@@ -10,12 +10,16 @@
 #---------------------build config-------------------------
 
 DEBUG_BUILD ?= 0
-EXTRA_CXXFLAGS ?= -I/home/ceph/rocksdb/include
-EXTRA_LDFLAGS ?= -I/home/ceph/rocksdb -ldl -lz lsnappy -lbz2 -llz4
+#EXTRA_CXXFLAGS ?= -I/home/ceph/rocksdb/include
+EXTRA_CXXFLAGS ?= -I/usr/include -I/home/ceph/remixdb
+#EXTRA_LDFLAGS ?= -L/home/ceph/rocksdb -ldl -lz -lsnappy -lbz2 -llz4
+EXTRA_LDFLAGS ?= -L/lib -L/home/ceph/remixdb -ldl -lz -lbz2 -llz4
+
 
 BIND_LEVELDB ?= 0
-BIND_ROCKSDB ?= 1
+BIND_ROCKSDB ?= 0
 BIND_LMDB ?= 0
+BIND_REMIXDB ?= 1
 
 #----------------------------------------------------------
 
@@ -41,7 +45,14 @@ ifeq ($(BIND_LMDB), 1)
 	SOURCES += $(wildcard lmdb/*.cc)
 endif
 
-CXXFLAGS += -std=c++11 -Wall -pthread $(EXTRA_CXXFLAGS) -I./
+ifeq ($(BIND_REMIXDB), 1)
+	LDFLAGS += -lremixdb
+	SOURCES += $(wildcard remixdb/*.cc)
+endif
+
+
+#CXXFLAGS += -std=c++11 -Wall -pthread $(EXTRA_CXXFLAGS) -I./
+CXXFLAGS += -Wall -pthread $(EXTRA_CXXFLAGS) -I./
 LDFLAGS += $(EXTRA_LDFLAGS) -lpthread
 SOURCES += $(wildcard core/*.cc)
 OBJECTS += $(SOURCES:.cc=.o)

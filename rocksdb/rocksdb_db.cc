@@ -196,7 +196,8 @@ void RocksdbDB::GetOptions(const utils::Properties &props, rocksdb::Options *opt
                            std::vector<rocksdb::ColumnFamilyDescriptor> *cf_descs) {
   std::string env_uri = props.GetProperty(PROP_ENV_URI, PROP_ENV_URI_DEFAULT);
   std::string fs_uri = props.GetProperty(PROP_FS_URI, PROP_FS_URI_DEFAULT);
-  rocksdb::Env* env =  rocksdb::Env::Default();;
+  rocksdb::Env* env =  rocksdb::Env::Default();
+  /*
   if (!env_uri.empty() || !fs_uri.empty()) {
     rocksdb::Status s = rocksdb::Env::CreateFromUri(rocksdb::ConfigOptions(),
                                                     env_uri, fs_uri, &env, &env_guard);
@@ -204,7 +205,7 @@ void RocksdbDB::GetOptions(const utils::Properties &props, rocksdb::Options *opt
       throw utils::Exception(std::string("RocksDB CreateFromUri: ") + s.ToString());
     }
     opt->env = env;
-  }
+  }*/
 
   const std::string options_file = props.GetProperty(PROP_OPTIONS_FILE, PROP_OPTIONS_FILE_DEFAULT);
   if (options_file != "") {
