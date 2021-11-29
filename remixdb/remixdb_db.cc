@@ -119,7 +119,7 @@ void RemixdbDB::Init() {
   const u64 mtsz = a2u64(props.GetProperty(PROP_MT_SIZE, PROP_MT_SIZE_DEFAULT).c_str());
 
   db_ = remixdb_open(db_path.c_str(), cachesz, mtsz, true);
-  if (db_) {
+  if (!db_) {
     throw utils::Exception(std::string("Remixdb Open Failed\n"));
   }
   ref_ = remixdb_ref(db_);
