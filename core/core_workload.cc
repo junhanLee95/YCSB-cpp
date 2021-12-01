@@ -19,6 +19,9 @@
 #include <algorithm>
 #include <random>
 #include <string>
+#include <iostream>
+#include <random>
+#include <ctime>
 
 using ycsbc::CoreWorkload;
 using std::string;
@@ -71,6 +74,9 @@ const string CoreWorkload::REQUEST_DISTRIBUTION_DEFAULT = "uniform";
 const string CoreWorkload::ZERO_PADDING_PROPERTY = "zeropadding";
 const string CoreWorkload::ZERO_PADDING_DEFAULT = "1";
 
+const string CoreWorkload::PREFIX_PADDING_PROPERTY = "prefixpadding";
+const string CoreWorkload::PREFIX_PADDING_DEFAULT = "0";
+
 const string CoreWorkload::MIN_SCAN_LENGTH_PROPERTY = "minscanlength";
 const string CoreWorkload::MIN_SCAN_LENGTH_DEFAULT = "1";
 
@@ -120,6 +126,8 @@ void CoreWorkload::Init(const utils::Properties &p) {
   int insert_start = std::stoi(p.GetProperty(INSERT_START_PROPERTY, INSERT_START_DEFAULT));
 
   zero_padding_ = std::stoi(p.GetProperty(ZERO_PADDING_PROPERTY, ZERO_PADDING_DEFAULT));
+  
+  prefix_padding_ = std::stoi(p.GetProperty(PREFIX_PADDING_PROPERTY, PREFIX_PADDING_DEFAULT));
 
   read_all_fields_ = utils::StrToBool(p.GetProperty(READ_ALL_FIELDS_PROPERTY,
                                                     READ_ALL_FIELDS_DEFAULT));
@@ -167,7 +175,7 @@ void CoreWorkload::Init(const utils::Properties &p) {
 
   } else if (request_dist == "zipfiancomp") {
     // Zipf-Composite distribution derived from EvenDB(Eurosys'20).
-    // Uniform(66bit) + Zipf(14bit)
+    // Zipf(14byte) + Uniform(66byte)
     int op_count = std::stoi(p.GetProperty(OPERATION_COUNT_PROPERTY));
     int new_keys = (int)(op_count * insert_proportion * 2); // a fudge factor
     key_chooser_ = new ZipfianCompGenerator(record_count_ + new_keys);
@@ -212,6 +220,24 @@ std::string CoreWorkload::BuildKeyName(uint64_t key_num) {
   std::string prekey = "user";
   std::string value = std::to_string(key_num);
   int fill = std::max(0, zero_padding_ - static_cast<int>(value.size()));
+
+  if(prefix_padding_ > 0){
+    std::string prekey2;
+    int dice = mt_() % 1000;
+    if (0 <= dice && dice < 500) {
+      prekey2 = "00";
+    }
+    else if (500 <= dice && dice < 750) {
+      prekey2 = "01";
+    }
+    else if (750 <= dice && dice < 875) {
+      prekey2 = "10";
+    }
+    else{
+      prekey2 = "11";
+    }
+    return prekey.append(prekey2).append(fill, '0').append(value);
+  }
   return prekey.append(fill, '0').append(value);
 }
 

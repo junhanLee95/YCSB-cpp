@@ -17,6 +17,12 @@
 #include <rocksdb/db.h>
 #include <rocksdb/table.h>
 #include <rocksdb/options.h>
+/*
+#include "global/global_init.h"
+#include "os/bluestore/BlueFS.h"
+#include "os/bluestore/BlueStore.h"
+#include "os/bluestore/BlueRocksEnv.h"
+*/
 
 namespace ycsbc {
 
@@ -96,6 +102,7 @@ class RocksdbDB : public DB {
   static rocksdb::DB *db_;
   static int ref_cnt_;
   static std::mutex mu_;
+  //static BlueFS* bluefs;
 };
 
 DB *NewRocksdbDB();

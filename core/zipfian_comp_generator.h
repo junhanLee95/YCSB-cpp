@@ -11,6 +11,8 @@
 
 #include "generator.h"
 
+#include <atomic>
+#include <random>
 #include <cstdint>
 #include "utils.h"
 #include "zipfian_generator.h"
@@ -21,11 +23,11 @@ namespace ycsbc {
 class ZipfianCompGenerator : public Generator<uint64_t> {
  public:
   ZipfianCompGenerator(uint64_t min, uint64_t max, double zipfian_const) :
-      base_(min), num_items_(max - min + 1), generator_(0, 10000000000LL, zipfian_const), counter_(0) { }
+      base_(min), num_items_(max - min + 1), generator_(0, 10000000000LL, zipfian_const), dist_(0, uniform_bit_) { }
 
   ZipfianCompGenerator(uint64_t min, uint64_t max) :
       base_(min), num_items_(max - min + 1),
-      generator_(0, 10000000000LL, ZipfianGenerator::kZipfianConst, kZetan), counter_(0) { }
+      generator_(0, 10000000000LL, ZipfianGenerator::kZipfianConst, kZetan), dist_(0, uniform_bit_) { }
 
   ZipfianCompGenerator(uint64_t num_items) :
       ZipfianCompGenerator(0, num_items - 1) { }
@@ -37,24 +39,26 @@ class ZipfianCompGenerator : public Generator<uint64_t> {
   static constexpr double kZetan = 26.46902820178302;
   const uint64_t base_;
   const uint64_t num_items_;
-  static const uint64_t zipf_bit_ = 1<<14; // 10 byte in total
-  static const uint64_t uniform_bit_ = 1<<18;
+  static const uint64_t zipf_bit_ = 10000;
+  static const uint64_t uniform_bit_ = 1000;
   ZipfianGenerator generator_;
-  CounterGenerator counter_;
+  std::mt19937_64 mt_;
+  std::uniform_int_distribution<uint64_t> dist_;
+  uint64_t last_int_;
 
   uint64_t Scramble(uint64_t u_value, uint64_t z_value) const;
 };
 
 inline uint64_t ZipfianCompGenerator::Scramble(uint64_t u_value, uint64_t z_value) const {
-  return base_ +  utils::FNVHash64(z_value) % zipf_bit_ + utils::FNVHash64(u_value) % uniform_bit_ * zipf_bit_;
+  return base_ +  (utils::FNVHash64(z_value) % zipf_bit_ * uniform_bit_ + u_value % uniform_bit_) % num_items_ ;
 }
 
 inline uint64_t ZipfianCompGenerator::Next() {
-  return Scramble(counter_.Next(), generator_.Next());
+  return last_int_ = Scramble(dist_(mt_), generator_.Next());
 }
 
 inline uint64_t ZipfianCompGenerator::Last() {
-  return Scramble(counter_.Last(), generator_.Next());
+  return last_int_;
 }
 
 }

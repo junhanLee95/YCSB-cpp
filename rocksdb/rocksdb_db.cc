@@ -6,6 +6,7 @@
 //
 
 #include "rocksdb_db.h"
+//#include "rocksdb_bluefs.h"
 
 #include "core/core_workload.h"
 #include "core/db_factory.h"
@@ -17,10 +18,19 @@
 #include <rocksdb/status.h>
 #include <rocksdb/utilities/options_util.h>
 #include <rocksdb/write_batch.h>
-
+#include <iostream>
+/*
+#include "global/global_init.h"
+#include "os/bluestore/BlueFS.h"
+#include "os/bluestore/BlueStore.h"
+#include "os/bluestore/BlueRocksEnv.h"
+*/
 namespace {
   const std::string PROP_NAME = "rocksdb.dbname";
   const std::string PROP_NAME_DEFAULT = "";
+
+  const std::string PROP_BLUEFS_ENABLED = "bluefs.enabled";
+  const std::string PROP_BLUEFS_ENABLED_DEFAULT = "false";
 
   const std::string PROP_FORMAT = "rocksdb.format";
   const std::string PROP_FORMAT_DEFAULT = "single";
@@ -82,6 +92,7 @@ namespace ycsbc {
 rocksdb::DB *RocksdbDB::db_ = nullptr;
 int RocksdbDB::ref_cnt_ = 0;
 std::mutex RocksdbDB::mu_;
+//BlueFS *RocksdbDB::bluefs = nullptr;
 
 void RocksdbDB::Init() {
 // merge operator disabled by default due to link error
@@ -190,13 +201,38 @@ void RocksdbDB::Cleanup() {
     return;
   }
   delete db_;
+  //bluefs->umount();
+  //delete bluefs;
 }
 
 void RocksdbDB::GetOptions(const utils::Properties &props, rocksdb::Options *opt,
                            std::vector<rocksdb::ColumnFamilyDescriptor> *cf_descs) {
   std::string env_uri = props.GetProperty(PROP_ENV_URI, PROP_ENV_URI_DEFAULT);
   std::string fs_uri = props.GetProperty(PROP_FS_URI, PROP_FS_URI_DEFAULT);
-  rocksdb::Env* env =  rocksdb::Env::Default();
+  //std::string bluefs_enabled = props.GetProperty(PROP_BLUEFS_ENABLED, PROP_BLUEFS_ENABLED_DEFAULT);
+  rocksdb::Env* env;
+  /*if (!bluefs_enabled.compare("true")){
+    std::vector<string> devs;
+    std::string path="/var/lib/ceph/osd/ceph-0";
+    std::string action;
+
+    action="bluefs-db-bench";
+
+    std::vector<const char*> args;
+    args.push_back("--no-log-to-stderr");
+    args.push_back("--err-to-stderr");
+    auto cct = global_init(NULL, args, CEPH_ENTITY_TYPE_CLIENT,
+                           CODE_ENVIRONMENT_UTILITY,
+                           CINIT_FLAG_NO_DEFAULT_CONFIG_FILE);
+    common_init_finish(cct.get());
+
+    inferring_bluefs_devices(devs, path);
+    bluefs = open_bluefs(cct.get(), path, devs);
+    env = new BlueRocksEnv(bluefs);
+  }
+  else {*/
+  env =  rocksdb::Env::Default();
+  //}
   /*
   if (!env_uri.empty() || !fs_uri.empty()) {
     rocksdb::Status s = rocksdb::Env::CreateFromUri(rocksdb::ConfigOptions(),

@@ -18,7 +18,7 @@
 #include "counter_generator.h"
 #include "acknowledged_counter_generator.h"
 #include "utils.h"
-
+#include <iostream>
 namespace ycsbc {
 
 enum Operation {
@@ -119,6 +119,12 @@ class CoreWorkload {
   static const std::string ZERO_PADDING_DEFAULT;
 
   ///
+  /// The default prefix padding value. Matches integer sort order
+  ///
+  static const std::string PREFIX_PADDING_PROPERTY;
+  static const std::string PREFIX_PADDING_DEFAULT;
+
+  ///
   /// The name of the property for the min scan length (number of records).
   ///
   static const std::string MIN_SCAN_LENGTH_PROPERTY;
@@ -214,6 +220,8 @@ class CoreWorkload {
   bool ordered_inserts_;
   size_t record_count_;
   int zero_padding_;
+  int prefix_padding_;
+  std::mt19937 mt_;
 };
 
 inline uint64_t CoreWorkload::NextTransactionKeyNum() {
