@@ -10,18 +10,18 @@
 #---------------------build config-------------------------
 
 DEBUG_BUILD ?= 0
-EXTRA_CXXFLAGS ?= -I/home/ceph/rocksdb/include 
+#EXTRA_CXXFLAGS ?= -I/home/ceph/rocksdb/include 
 #EXTRA_CXXFLAGS ?= -I/home/ceph/rocksdb/include -I/home/ceph/bluefs_bench/ceph/src/ -I/home/ceph/bluefs_bench/ceph/build/include -I/home/ceph/bluefs_bench/ceph/build/boost/include
-#EXTRA_CXXFLAGS ?= -I/usr/include -I/home/ceph/remixdb
-EXTRA_LDFLAGS ?= -L/home/ceph/rocksdb -ldl -lz -lsnappy -lbz2 -llz4
+EXTRA_CXXFLAGS ?= -I/usr/include -I/home/ceph/remixdb
+#EXTRA_LDFLAGS ?= -L/home/ceph/rocksdb -ldl -lz -lsnappy -lbz2 -llz4
 #EXTRA_LDFLAGS ?= -L/home/ceph/rocksdb -L/usr/local/lib -L/home/ceph/bluefs_bench/ceph/build/lib/ -L/home/ceph/bluefs_bench/ceph/build/boost/lib/ -L/usr/lib64/ -L/home/ceph/bluefs_bench/ceph/build/src/os/CMakeFiles/os.dir/bluestore -ldl -lz -lsnappy -lbz2 -llz4
-#EXTRA_LDFLAGS ?= -L/lib -L/home/ceph/remixdb -ldl -lz -lbz2 -llz4
+EXTRA_LDFLAGS ?= -L/lib -L/home/ceph/remixdb -ldl -lz -lbz2 -llz4
 
 
 BIND_LEVELDB ?= 0
-BIND_ROCKSDB ?= 1
+BIND_ROCKSDB ?= 0
 BIND_LMDB ?= 0
-BIND_REMIXDB ?= 0
+BIND_REMIXDB ?= 1
 
 #----------------------------------------------------------
 
@@ -59,7 +59,7 @@ LDFLAGS += $(EXTRA_LDFLAGS) -lpthread
 SOURCES += $(wildcard core/*.cc)
 OBJECTS += $(SOURCES:.cc=.o)
 DEPS += $(SOURCES:.cc=.d)
-EXEC = ycsb
+EXEC = ycsbremix
 
 all: $(EXEC)
 

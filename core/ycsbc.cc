@@ -55,6 +55,7 @@ int main(const int argc, const char *argv[]) {
   ParseCommandLine(argc, argv, props);
 
   const bool do_load = (props.GetProperty("doload", "false") == "true");
+  const bool print_key_stat = (props.GetProperty("printkeystat", "false") == "true");
   const bool do_transaction = (props.GetProperty("dotransaction", "false") == "true");
   if (!do_load && !do_transaction) {
     std::cerr << "No operation to do" << std::endl;
@@ -100,7 +101,7 @@ int main(const int argc, const char *argv[]) {
         thread_ops++;
       }
       client_threads.emplace_back(std::async(std::launch::async, ycsbc::ClientThread, dbs[i], &wl,
-                                             thread_ops, true, true, !do_transaction, &latch));
+                                             thread_ops, true, true, print_key_stat, !do_transaction, &latch));
     }
     assert((int)client_threads.size() == num_threads);
 
@@ -143,7 +144,7 @@ int main(const int argc, const char *argv[]) {
         thread_ops++;
       }
       client_threads.emplace_back(std::async(std::launch::async, ycsbc::ClientThread, dbs[i], &wl,
-                                             thread_ops, false, !do_load, true,  &latch));
+                                             thread_ops, false, !do_load, print_key_stat, true,  &latch));
     }
     assert((int)client_threads.size() == num_threads);
 
@@ -177,7 +178,11 @@ void ParseCommandLine(int argc, const char *argv[], ycsbc::utils::Properties &pr
     } else if (strcmp(argv[argindex], "-run") == 0 || strcmp(argv[argindex], "-t") == 0) {
       props.SetProperty("dotransaction", "true");
       argindex++;
-    } else if (strcmp(argv[argindex], "-threads") == 0) {
+    } else if (strcmp(argv[argindex], "-print_key_stat") == 0) {
+      props.SetProperty("printkeystat", "true");
+      argindex++;
+    }
+    else if (strcmp(argv[argindex], "-threads") == 0) {
       argindex++;
       if (argindex >= argc) {
         UsageMessage(argv[0]);

@@ -1,4 +1,4 @@
-cscope 15 $HOME/YCSB-cpp               0000663501
+cscope 15 $HOME/YCSB-cpp               0000665199
 	@core/acknowledged_counter_generator.cc
 
 8 
@@ -930,28 +930,36 @@ YCSB_C_CLIENT_H_
 >
 
 13 
+	~<m≠
+>
+
+14 
+	~<f°ªam
+>
+
+15 
 	~"db.h
 "
 
-14 
+16 
 	~"c‹e_w‹klﬂd.h
 "
 
-15 
+17 
 	~"utûs.h
 "
 
-16 
+18 
 	~"cou¡down_œtch.h
 "
 
-18 
+20 
 «me•a˚
  
 	gycsbc
  {
 
-20 
+22 
 ölöe
  
 Clõ¡Thªad
@@ -973,10 +981,12 @@ boﬁ
 is_lﬂdög
 ,
 
-21 
+23 
 boﬁ
  
 öô_db
+, boﬁ 
+¥öt_key_°©
 , boﬁ 
 ˛ónup_db
 , 
@@ -985,31 +995,43 @@ Cou¡DownL©ch
 œtch
 ) {
 
-22 i‡(
+24 i‡(
 	göô_db
 ) {
 
-23 
+25 
 	gdb
 ->
 Inô
 ();
 
-26 
+28 
 	goks
  = 0;
 
-27 
+29 
+	g°d
+::
+m≠
+<
+uöt64_t
+, 
+	guöt64_t
+> 
+	gkey_°©s
+;
+
+30 
 	gi
  = 0; i < 
 	gnum_›s
 ; ++i) {
 
-28 i‡(
+31 i‡(
 	gis_lﬂdög
 ) {
 
-29 
+32 
 	goks
  +
 wl
@@ -1017,9 +1039,13 @@ wl
 DoIn£π
 (*
 db
+, 
+¥öt_key_°©
+, 
+key_°©s
 );
 
-31 
+34 
 	goks
  +
 wl
@@ -1027,25 +1053,69 @@ wl
 DoTønß˘i⁄
 (*
 db
+, 
+¥öt_key_°©
+, 
+key_°©s
 );
 
-35 i‡(
+38 if(
+	g¥öt_key_°©
+) {
+
+40 
+	g°d
+::
+of°ªam
+ 
+ofûe
+;
+
+41 
+	gofûe
+.
+›í
+("/home/ceph/YCSB-cpp/print_key_stats.txt");
+
+42 autÿ
+	gk
+: 
+key_°©s
+) {
+
+43 
+ofûe
+ << 
+k
+.
+fú°
+ << "\t" << k.
+£c⁄d
+ << "\n";
+
+46 
+	gofûe
+.
+˛o£
+();
+
+49 i‡(
 	g˛ónup_db
 ) {
 
-36 
+50 
 	gdb
 ->
 CÀ™up
 ();
 
-39 
+53 
 	gœtch
 ->
 Cou¡Down
 ();
 
-40  
+54  
 	goks
 ;
 
@@ -1179,7 +1249,15 @@ c⁄°™t_
 	~<io°ªam
 >
 
-23 
+23 
+	~<øndom
+>
+
+24 
+	~<˘ime
+>
+
+26 
 usög
  
 	gycsbc
@@ -1187,7 +1265,7 @@ usög
 C‹eW‹klﬂd
 ;
 
-24 
+27 
 usög
  
 	g°d
@@ -1195,7 +1273,7 @@ usög
 °rög
 ;
 
-26 c⁄° *
+29 c⁄° *
 	gycsbc
 ::
 kO≥øti⁄Såög
@@ -1205,7 +1283,7 @@ ycsbc
 MAXOPTYPE
 ] = {
 
-35 c⁄° 
+38 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1213,7 +1291,7 @@ MAXOPTYPE
 TABLENAME_PROPERTY
  = "table";
 
-36 c⁄° 
+39 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1221,7 +1299,7 @@ TABLENAME_PROPERTY
 TABLENAME_DEFAULT
  = "usertable";
 
-38 c⁄° 
+41 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1229,7 +1307,7 @@ TABLENAME_DEFAULT
 FIELD_COUNT_PROPERTY
  = "fieldcount";
 
-39 c⁄° 
+42 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1237,7 +1315,7 @@ FIELD_COUNT_PROPERTY
 FIELD_COUNT_DEFAULT
  = "10";
 
-41 c⁄° 
+44 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1245,7 +1323,7 @@ FIELD_COUNT_DEFAULT
 FIELD_LENGTH_DISTRIBUTION_PROPERTY
  = "field_len_dist";
 
-42 c⁄° 
+45 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1253,7 +1331,7 @@ FIELD_LENGTH_DISTRIBUTION_PROPERTY
 FIELD_LENGTH_DISTRIBUTION_DEFAULT
  = "constant";
 
-44 c⁄° 
+47 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1261,7 +1339,7 @@ FIELD_LENGTH_DISTRIBUTION_DEFAULT
 FIELD_LENGTH_PROPERTY
  = "fieldlength";
 
-45 c⁄° 
+48 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1269,7 +1347,7 @@ FIELD_LENGTH_PROPERTY
 FIELD_LENGTH_DEFAULT
  = "100";
 
-47 c⁄° 
+50 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1277,7 +1355,7 @@ FIELD_LENGTH_DEFAULT
 READ_ALL_FIELDS_PROPERTY
  = "readallfields";
 
-48 c⁄° 
+51 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1285,7 +1363,7 @@ READ_ALL_FIELDS_PROPERTY
 READ_ALL_FIELDS_DEFAULT
  = "true";
 
-50 c⁄° 
+53 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1293,7 +1371,7 @@ READ_ALL_FIELDS_DEFAULT
 WRITE_ALL_FIELDS_PROPERTY
  = "writeallfields";
 
-51 c⁄° 
+54 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1301,7 +1379,7 @@ WRITE_ALL_FIELDS_PROPERTY
 WRITE_ALL_FIELDS_DEFAULT
  = "false";
 
-53 c⁄° 
+56 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1309,7 +1387,7 @@ WRITE_ALL_FIELDS_DEFAULT
 READ_PROPORTION_PROPERTY
  = "readproportion";
 
-54 c⁄° 
+57 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1317,7 +1395,7 @@ READ_PROPORTION_PROPERTY
 READ_PROPORTION_DEFAULT
  = "0.95";
 
-56 c⁄° 
+59 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1325,7 +1403,7 @@ READ_PROPORTION_DEFAULT
 UPDATE_PROPORTION_PROPERTY
  = "updateproportion";
 
-57 c⁄° 
+60 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1333,7 +1411,7 @@ UPDATE_PROPORTION_PROPERTY
 UPDATE_PROPORTION_DEFAULT
  = "0.05";
 
-59 c⁄° 
+62 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1341,7 +1419,7 @@ UPDATE_PROPORTION_DEFAULT
 INSERT_PROPORTION_PROPERTY
  = "insertproportion";
 
-60 c⁄° 
+63 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1349,7 +1427,7 @@ INSERT_PROPORTION_PROPERTY
 INSERT_PROPORTION_DEFAULT
  = "0.0";
 
-62 c⁄° 
+65 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1357,7 +1435,7 @@ INSERT_PROPORTION_DEFAULT
 SCAN_PROPORTION_PROPERTY
  = "scanproportion";
 
-63 c⁄° 
+66 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1365,7 +1443,7 @@ SCAN_PROPORTION_PROPERTY
 SCAN_PROPORTION_DEFAULT
  = "0.0";
 
-65 c⁄° 
+68 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1373,7 +1451,7 @@ SCAN_PROPORTION_DEFAULT
 READMODIFYWRITE_PROPORTION_PROPERTY
  = "readmodifywriteproportion";
 
-66 c⁄° 
+69 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1381,7 +1459,7 @@ READMODIFYWRITE_PROPORTION_PROPERTY
 READMODIFYWRITE_PROPORTION_DEFAULT
  = "0.0";
 
-68 c⁄° 
+71 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1389,7 +1467,7 @@ READMODIFYWRITE_PROPORTION_DEFAULT
 REQUEST_DISTRIBUTION_PROPERTY
  = "requestdistribution";
 
-69 c⁄° 
+72 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1397,7 +1475,7 @@ REQUEST_DISTRIBUTION_PROPERTY
 REQUEST_DISTRIBUTION_DEFAULT
  = "uniform";
 
-71 c⁄° 
+74 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1405,7 +1483,7 @@ REQUEST_DISTRIBUTION_DEFAULT
 ZERO_PADDING_PROPERTY
  = "zeropadding";
 
-72 c⁄° 
+75 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1413,7 +1491,7 @@ ZERO_PADDING_PROPERTY
 ZERO_PADDING_DEFAULT
  = "1";
 
-74 c⁄° 
+77 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1421,15 +1499,15 @@ ZERO_PADDING_DEFAULT
 PREFIX_PADDING_PROPERTY
  = "prefixpadding";
 
-75 c⁄° 
+78 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
 ::
 PREFIX_PADDING_DEFAULT
- = "2";
+ = "0";
 
-77 c⁄° 
+80 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1437,7 +1515,7 @@ PREFIX_PADDING_DEFAULT
 MIN_SCAN_LENGTH_PROPERTY
  = "minscanlength";
 
-78 c⁄° 
+81 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1445,7 +1523,7 @@ MIN_SCAN_LENGTH_PROPERTY
 MIN_SCAN_LENGTH_DEFAULT
  = "1";
 
-80 c⁄° 
+83 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1453,7 +1531,7 @@ MIN_SCAN_LENGTH_DEFAULT
 MAX_SCAN_LENGTH_PROPERTY
  = "maxscanlength";
 
-81 c⁄° 
+84 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1461,7 +1539,7 @@ MAX_SCAN_LENGTH_PROPERTY
 MAX_SCAN_LENGTH_DEFAULT
  = "1000";
 
-83 c⁄° 
+86 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1469,7 +1547,7 @@ MAX_SCAN_LENGTH_DEFAULT
 SCAN_LENGTH_DISTRIBUTION_PROPERTY
  = "scanlengthdistribution";
 
-84 c⁄° 
+87 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1477,7 +1555,7 @@ SCAN_LENGTH_DISTRIBUTION_PROPERTY
 SCAN_LENGTH_DISTRIBUTION_DEFAULT
  = "uniform";
 
-86 c⁄° 
+89 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1485,7 +1563,7 @@ SCAN_LENGTH_DISTRIBUTION_DEFAULT
 INSERT_ORDER_PROPERTY
  = "insertorder";
 
-87 c⁄° 
+90 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1493,7 +1571,7 @@ INSERT_ORDER_PROPERTY
 INSERT_ORDER_DEFAULT
  = "hashed";
 
-89 c⁄° 
+92 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1501,7 +1579,7 @@ INSERT_ORDER_DEFAULT
 INSERT_START_PROPERTY
  = "insertstart";
 
-90 c⁄° 
+93 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1509,7 +1587,7 @@ INSERT_START_PROPERTY
 INSERT_START_DEFAULT
  = "0";
 
-92 c⁄° 
+95 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1517,7 +1595,7 @@ INSERT_START_DEFAULT
 RECORD_COUNT_PROPERTY
  = "recordcount";
 
-93 c⁄° 
+96 c⁄° 
 °rög
  
 	gC‹eW‹klﬂd
@@ -1525,7 +1603,7 @@ RECORD_COUNT_PROPERTY
 OPERATION_COUNT_PROPERTY
  = "operationcount";
 
-95 c⁄° 
+98 c⁄° 
 	g°d
 ::
 °rög
@@ -1535,7 +1613,7 @@ C‹eW‹klﬂd
 FIELD_NAME_PREFIX
  = "fieldnameprefix";
 
-96 c⁄° 
+99 c⁄° 
 	g°d
 ::
 °rög
@@ -1545,7 +1623,7 @@ C‹eW‹klﬂd
 FIELD_NAME_PREFIX_DEFAULT
  = "field";
 
-98 
+101 
 	gC‹eW‹klﬂd
 ::
 	$Inô
@@ -1557,7 +1635,7 @@ Pr›îtõs
 p
 ) {
 
-99 
+102 
 èbÀ_«me_
  = 
 p
@@ -1569,7 +1647,7 @@ TABLENAME_PROPERTY
 TABLENAME_DEFAULT
 );
 
-101 
+104 
 fõld_cou¡_
  = 
 °d
@@ -1585,7 +1663,7 @@ FIELD_COUNT_PROPERTY
 FIELD_COUNT_DEFAULT
 ));
 
-102 
+105 
 fõld_¥efix_
  = 
 p
@@ -1597,7 +1675,7 @@ FIELD_NAME_PREFIX
 FIELD_NAME_PREFIX_DEFAULT
 );
 
-103 
+106 
 fõld_Àn_gíî©‹_
  = 
 	`GëFõldLíGíî©‹
@@ -1605,7 +1683,7 @@ fõld_Àn_gíî©‹_
 p
 );
 
-105 
+108 
 ªad_¥›‹ti⁄
  = 
 °d
@@ -1619,11 +1697,11 @@ p
 READ_PROPORTION_PROPERTY
 ,
 
-106 
+109 
 READ_PROPORTION_DEFAULT
 ));
 
-107 
+110 
 upd©e_¥›‹ti⁄
  = 
 °d
@@ -1637,11 +1715,11 @@ p
 UPDATE_PROPORTION_PROPERTY
 ,
 
-108 
+111 
 UPDATE_PROPORTION_DEFAULT
 ));
 
-109 
+112 
 ö£π_¥›‹ti⁄
  = 
 °d
@@ -1655,11 +1733,11 @@ p
 INSERT_PROPORTION_PROPERTY
 ,
 
-110 
+113 
 INSERT_PROPORTION_DEFAULT
 ));
 
-111 
+114 
 sˇn_¥›‹ti⁄
  = 
 °d
@@ -1673,11 +1751,11 @@ p
 SCAN_PROPORTION_PROPERTY
 ,
 
-112 
+115 
 SCAN_PROPORTION_DEFAULT
 ));
 
-113 
+116 
 ªadmodifywrôe_¥›‹ti⁄
  = 
 °d
@@ -1689,13 +1767,13 @@ p
 	`GëPr›îty
 (
 
-114 
+117 
 READMODIFYWRITE_PROPORTION_PROPERTY
 , 
 READMODIFYWRITE_PROPORTION_DEFAULT
 ));
 
-116 
+119 
 ªc‹d_cou¡_
  = 
 °d
@@ -1709,7 +1787,7 @@ p
 RECORD_COUNT_PROPERTY
 ));
 
-117 
+120 
 °d
 ::
 °rög
@@ -1723,11 +1801,11 @@ p
 REQUEST_DISTRIBUTION_PROPERTY
 ,
 
-118 
+121 
 REQUEST_DISTRIBUTION_DEFAULT
 );
 
-119 
+122 
 mö_sˇn_Àn
  = 
 °d
@@ -1743,7 +1821,7 @@ MIN_SCAN_LENGTH_PROPERTY
 MIN_SCAN_LENGTH_DEFAULT
 ));
 
-120 
+123 
 max_sˇn_Àn
  = 
 °d
@@ -1759,7 +1837,7 @@ MAX_SCAN_LENGTH_PROPERTY
 MAX_SCAN_LENGTH_DEFAULT
 ));
 
-121 
+124 
 °d
 ::
 °rög
@@ -1773,11 +1851,11 @@ p
 SCAN_LENGTH_DISTRIBUTION_PROPERTY
 ,
 
-122 
+125 
 SCAN_LENGTH_DISTRIBUTION_DEFAULT
 );
 
-123 
+126 
 ö£π_°¨t
  = 
 °d
@@ -1793,7 +1871,7 @@ INSERT_START_PROPERTY
 INSERT_START_DEFAULT
 ));
 
-125 
+128 
 zîo_∑ddög_
  = 
 °d
@@ -1809,7 +1887,7 @@ ZERO_PADDING_PROPERTY
 ZERO_PADDING_DEFAULT
 ));
 
-127 
+130 
 ¥efix_∑ddög_
  = 
 °d
@@ -1825,7 +1903,7 @@ PREFIX_PADDING_PROPERTY
 PREFIX_PADDING_DEFAULT
 ));
 
-129 
+133 
 ªad_Æl_fõlds_
  = 
 utûs
@@ -1839,11 +1917,11 @@ p
 READ_ALL_FIELDS_PROPERTY
 ,
 
-130 
+134 
 READ_ALL_FIELDS_DEFAULT
 ));
 
-131 
+135 
 wrôe_Æl_fõlds_
  = 
 utûs
@@ -1857,11 +1935,11 @@ p
 WRITE_ALL_FIELDS_PROPERTY
 ,
 
-132 
+136 
 WRITE_ALL_FIELDS_DEFAULT
 ));
 
-134 i‡(
+138 i‡(
 p
 .
 	`GëPr›îty
@@ -1871,23 +1949,23 @@ INSERT_ORDER_PROPERTY
 INSERT_ORDER_DEFAULT
 ) == "hashed") {
 
-135 
+139 
 ‹dîed_ö£πs_
  = 
 Ál£
 ;
 
-137 
+141 
 ‹dîed_ö£πs_
  = 
 åue
 ;
 
-141 i‡(
+145 i‡(
 ªad_¥›‹ti⁄
  > 0) {
 
-142 
+146 
 ›_choo£r_
 .
 	`AddVÆue
@@ -1897,11 +1975,11 @@ READ
 ªad_¥›‹ti⁄
 );
 
-144 i‡(
+148 i‡(
 upd©e_¥›‹ti⁄
  > 0) {
 
-145 
+149 
 ›_choo£r_
 .
 	`AddVÆue
@@ -1911,11 +1989,11 @@ UPDATE
 upd©e_¥›‹ti⁄
 );
 
-147 i‡(
+151 i‡(
 ö£π_¥›‹ti⁄
  > 0) {
 
-148 
+152 
 ›_choo£r_
 .
 	`AddVÆue
@@ -1925,11 +2003,11 @@ INSERT
 ö£π_¥›‹ti⁄
 );
 
-150 i‡(
+154 i‡(
 sˇn_¥›‹ti⁄
  > 0) {
 
-151 
+155 
 ›_choo£r_
 .
 	`AddVÆue
@@ -1939,11 +2017,11 @@ SCAN
 sˇn_¥›‹ti⁄
 );
 
-153 i‡(
+157 i‡(
 ªadmodifywrôe_¥›‹ti⁄
  > 0) {
 
-154 
+158 
 ›_choo£r_
 .
 	`AddVÆue
@@ -1953,7 +2031,7 @@ READMODIFYWRITE
 ªadmodifywrôe_¥›‹ti⁄
 );
 
-157 
+161 
 ö£π_key_£quí˚_
  = 
 √w
@@ -1963,7 +2041,7 @@ READMODIFYWRITE
 ö£π_°¨t
 );
 
-158 
+162 
 å™ß˘i⁄_ö£π_key_£quí˚_
  = 
 √w
@@ -1973,11 +2051,11 @@ READMODIFYWRITE
 ªc‹d_cou¡_
 );
 
-160 i‡(
+164 i‡(
 ªque°_di°
  == "uniform") {
 
-161 
+165 
 key_choo£r_
  = 
 √w
@@ -1987,11 +2065,11 @@ key_choo£r_
 ªc‹d_cou¡_
  - 1);
 
-163 } i‡(
+167 } i‡(
 ªque°_di°
  == "zipfian") {
 
-169 
+173 
 ›_cou¡
  = 
 °d
@@ -2005,7 +2083,7 @@ p
 OPERATION_COUNT_PROPERTY
 ));
 
-170 
+174 
 √w_keys
  = ()(
 ›_cou¡
@@ -2013,7 +2091,7 @@ OPERATION_COUNT_PROPERTY
 ö£π_¥›‹ti⁄
  * 2);
 
-171 
+175 
 key_choo£r_
  = 
 √w
@@ -2025,11 +2103,11 @@ key_choo£r_
 √w_keys
 );
 
-173 } i‡(
+177 } i‡(
 ªque°_di°
  == "zipfiancomp") {
 
-176 
+180 
 ›_cou¡
  = 
 °d
@@ -2043,7 +2121,7 @@ p
 OPERATION_COUNT_PROPERTY
 ));
 
-177 
+181 
 √w_keys
  = ()(
 ›_cou¡
@@ -2051,19 +2129,7 @@ OPERATION_COUNT_PROPERTY
 ö£π_¥›‹ti⁄
  * 2);
 
-178 
-°d
-::
-cout
- << "[JH]Çum_ôem†: " << (
-ªc‹d_cou¡_
- + 
-√w_keys
-Ë<< std::
-ídl
-;
-
-179 
+182 
 key_choo£r_
  = 
 √w
@@ -2075,11 +2141,11 @@ key_choo£r_
 √w_keys
 );
 
-180 } i‡(
+183 } i‡(
 ªque°_di°
  == "latest") {
 
-181 
+184 
 key_choo£r_
  = 
 √w
@@ -2089,7 +2155,7 @@ key_choo£r_
 å™ß˘i⁄_ö£π_key_£quí˚_
 );
 
-184 
+187 
 throw
  
 utûs
@@ -2099,7 +2165,7 @@ utûs
 ªque°_di°
 );
 
-187 
+190 
 fõld_choo£r_
  = 
 √w
@@ -2109,11 +2175,11 @@ fõld_choo£r_
 fõld_cou¡_
  - 1);
 
-189 i‡(
+192 i‡(
 sˇn_Àn_di°
  == "uniform") {
 
-190 
+193 
 sˇn_Àn_choo£r_
  = 
 √w
@@ -2125,11 +2191,11 @@ mö_sˇn_Àn
 max_sˇn_Àn
 );
 
-191 } i‡(
+194 } i‡(
 sˇn_Àn_di°
  == "zipfian") {
 
-192 
+195 
 sˇn_Àn_choo£r_
  = 
 √w
@@ -2141,7 +2207,7 @@ mö_sˇn_Àn
 max_sˇn_Àn
 );
 
-194 
+197 
 throw
  
 utûs
@@ -2151,11 +2217,11 @@ utûs
 sˇn_Àn_di°
 );
 
-196 
+199 
 	}
 }
 
-198 
+201 
 	gycsbc
 ::
 Gíî©‹
@@ -2167,7 +2233,7 @@ C‹eW‹klﬂd
 	$GëFõldLíGíî©‹
 (
 
-199 c⁄° 
+202 c⁄° 
 utûs
 ::
 Pr›îtõs
@@ -2175,7 +2241,7 @@ Pr›îtõs
 p
 ) {
 
-200 
+203 
 °rög
  
 fõld_Àn_di°
@@ -2187,11 +2253,11 @@ p
 FIELD_LENGTH_DISTRIBUTION_PROPERTY
 ,
 
-201 
+204 
 FIELD_LENGTH_DISTRIBUTION_DEFAULT
 );
 
-202 
+205 
 fõld_Àn
  = 
 °d
@@ -2207,11 +2273,11 @@ FIELD_LENGTH_PROPERTY
 FIELD_LENGTH_DEFAULT
 ));
 
-203 if(
+206 if(
 fõld_Àn_di°
  == "constant") {
 
-204  
+207  
 √w
  
 	`C⁄°Gíî©‹
@@ -2219,11 +2285,11 @@ fõld_Àn_di°
 fõld_Àn
 );
 
-205 } if(
+208 } if(
 fõld_Àn_di°
  == "uniform") {
 
-206  
+209  
 √w
  
 	`Unif‹mGíî©‹
@@ -2231,11 +2297,11 @@ fõld_Àn_di°
 fõld_Àn
 );
 
-207 } if(
+210 } if(
 fõld_Àn_di°
  == "zipfian") {
 
-208  
+211  
 √w
  
 	`ZùfünGíî©‹
@@ -2243,7 +2309,7 @@ fõld_Àn_di°
 fõld_Àn
 );
 
-210 
+213 
 throw
  
 utûs
@@ -2253,11 +2319,11 @@ utûs
 fõld_Àn_di°
 );
 
-212 
+215 
 	}
 }
 
-214 
+217 
 	g°d
 ::
 °rög
@@ -2271,11 +2337,11 @@ uöt64_t
 key_num
 ) {
 
-215 i‡(!
+218 i‡(!
 ‹dîed_ö£πs_
 ) {
 
-216 
+219 
 key_num
  = 
 utûs
@@ -2283,7 +2349,7 @@ utûs
 	`Hash
 (key_num);
 
-218 
+221 
 °d
 ::
 °rög
@@ -2291,7 +2357,7 @@ utûs
 ¥ekey
  = "user";
 
-219 
+222 
 °d
 ::
 °rög
@@ -2303,7 +2369,7 @@ vÆue
 key_num
 );
 
-220 
+223 
 fûl
  = 
 °d
@@ -2319,11 +2385,11 @@ vÆue
 	`size
 ()));
 
-222 if(
+225 if(
 ¥efix_∑ddög_
  > 0){
 
-223 
+226 
 °d
 ::
 °rög
@@ -2331,35 +2397,15 @@ vÆue
 ¥ekey2
 ;
 
-224 
-°d
-::
-mt19937_64
- 
-mt
-;
-
-225 
-°d
-::
-unif‹m_öt_di°ributi⁄
-<
-uöt64_t
-> 
-di°
-;
-
 227 
 di˚
  = 
-	`di°
-(
-mt
-) % 1000;
+	`mt_
+() % 1000;
 
 228 i‡(0 <
 di˚
- < 500) {
+ && dice < 500) {
 
 229 
 ¥ekey2
@@ -2367,7 +2413,7 @@ di˚
 
 231 i‡(500 <
 di˚
- < 750) {
+ && dice < 750) {
 
 232 
 ¥ekey2
@@ -2375,7 +2421,7 @@ di˚
 
 234 i‡(750 <
 di˚
- < 875) {
+ && dice < 875) {
 
 235 
 ¥ekey2
@@ -2642,90 +2688,94 @@ YCSB_C_CORE_WORKLOAD_H_
 >
 
 14 
+	~<m≠
+>
+
+15 
 	~"db.h
 "
 
-15 
+16 
 	~"¥›îtõs.h
 "
 
-16 
+17 
 	~"gíî©‹.h
 "
 
-17 
+18 
 	~"dis¸ëe_gíî©‹.h
 "
 
-18 
+19 
 	~"cou¡î_gíî©‹.h
 "
 
-19 
+20 
 	~"acknowÀdged_cou¡î_gíî©‹.h
 "
 
-20 
+21 
 	~"utûs.h
 "
 
-21 
+22 
 	~<io°ªam
 >
 
-22 
+23 
 «me•a˚
  
 	gycsbc
  {
 
-24 
+25 
 	eO≥øti⁄
  {
 
-25 
+26 
 	gINSERT
 ,
 
-26 
+27 
 	gREAD
 ,
 
-27 
+28 
 	gUPDATE
 ,
 
-28 
+29 
 	gSCAN
 ,
 
-29 
+30 
 	gREADMODIFYWRITE
 ,
 
-30 
+31 
 	gDELETE
 ,
 
-31 
+32 
 	gMAXOPTYPE
 
 
-34 c⁄° *
+35 c⁄° *
 kO≥øti⁄Såög
 [
 MAXOPTYPE
 ];
 
-36 ˛as†
+37 ˛as†
 	cC‹eW‹klﬂd
  {
 
-37 
+38 
 	gpublic
 :
 
-41 c⁄° 
+42 c⁄° 
 °d
 ::
 °rög
@@ -2733,7 +2783,7 @@ MAXOPTYPE
 TABLENAME_PROPERTY
 ;
 
-42 c⁄° 
+43 c⁄° 
 	g°d
 ::
 °rög
@@ -2741,7 +2791,7 @@ TABLENAME_PROPERTY
 TABLENAME_DEFAULT
 ;
 
-47 c⁄° 
+48 c⁄° 
 	g°d
 ::
 °rög
@@ -2749,7 +2799,7 @@ TABLENAME_DEFAULT
 FIELD_COUNT_PROPERTY
 ;
 
-48 c⁄° 
+49 c⁄° 
 	g°d
 ::
 °rög
@@ -2757,7 +2807,7 @@ FIELD_COUNT_PROPERTY
 FIELD_COUNT_DEFAULT
 ;
 
-54 c⁄° 
+55 c⁄° 
 	g°d
 ::
 °rög
@@ -2765,7 +2815,7 @@ FIELD_COUNT_DEFAULT
 FIELD_LENGTH_DISTRIBUTION_PROPERTY
 ;
 
-55 c⁄° 
+56 c⁄° 
 	g°d
 ::
 °rög
@@ -2773,7 +2823,7 @@ FIELD_LENGTH_DISTRIBUTION_PROPERTY
 FIELD_LENGTH_DISTRIBUTION_DEFAULT
 ;
 
-60 c⁄° 
+61 c⁄° 
 	g°d
 ::
 °rög
@@ -2781,7 +2831,7 @@ FIELD_LENGTH_DISTRIBUTION_DEFAULT
 FIELD_LENGTH_PROPERTY
 ;
 
-61 c⁄° 
+62 c⁄° 
 	g°d
 ::
 °rög
@@ -2789,7 +2839,7 @@ FIELD_LENGTH_PROPERTY
 FIELD_LENGTH_DEFAULT
 ;
 
-67 c⁄° 
+68 c⁄° 
 	g°d
 ::
 °rög
@@ -2797,7 +2847,7 @@ FIELD_LENGTH_DEFAULT
 READ_ALL_FIELDS_PROPERTY
 ;
 
-68 c⁄° 
+69 c⁄° 
 	g°d
 ::
 °rög
@@ -2805,7 +2855,7 @@ READ_ALL_FIELDS_PROPERTY
 READ_ALL_FIELDS_DEFAULT
 ;
 
-74 c⁄° 
+75 c⁄° 
 	g°d
 ::
 °rög
@@ -2813,7 +2863,7 @@ READ_ALL_FIELDS_DEFAULT
 WRITE_ALL_FIELDS_PROPERTY
 ;
 
-75 c⁄° 
+76 c⁄° 
 	g°d
 ::
 °rög
@@ -2821,7 +2871,7 @@ WRITE_ALL_FIELDS_PROPERTY
 WRITE_ALL_FIELDS_DEFAULT
 ;
 
-80 c⁄° 
+81 c⁄° 
 	g°d
 ::
 °rög
@@ -2829,7 +2879,7 @@ WRITE_ALL_FIELDS_DEFAULT
 READ_PROPORTION_PROPERTY
 ;
 
-81 c⁄° 
+82 c⁄° 
 	g°d
 ::
 °rög
@@ -2837,7 +2887,7 @@ READ_PROPORTION_PROPERTY
 READ_PROPORTION_DEFAULT
 ;
 
-86 c⁄° 
+87 c⁄° 
 	g°d
 ::
 °rög
@@ -2845,7 +2895,7 @@ READ_PROPORTION_DEFAULT
 UPDATE_PROPORTION_PROPERTY
 ;
 
-87 c⁄° 
+88 c⁄° 
 	g°d
 ::
 °rög
@@ -2853,7 +2903,7 @@ UPDATE_PROPORTION_PROPERTY
 UPDATE_PROPORTION_DEFAULT
 ;
 
-92 c⁄° 
+93 c⁄° 
 	g°d
 ::
 °rög
@@ -2861,7 +2911,7 @@ UPDATE_PROPORTION_DEFAULT
 INSERT_PROPORTION_PROPERTY
 ;
 
-93 c⁄° 
+94 c⁄° 
 	g°d
 ::
 °rög
@@ -2869,7 +2919,7 @@ INSERT_PROPORTION_PROPERTY
 INSERT_PROPORTION_DEFAULT
 ;
 
-98 c⁄° 
+99 c⁄° 
 	g°d
 ::
 °rög
@@ -2877,7 +2927,7 @@ INSERT_PROPORTION_DEFAULT
 SCAN_PROPORTION_PROPERTY
 ;
 
-99 c⁄° 
+100 c⁄° 
 	g°d
 ::
 °rög
@@ -2885,7 +2935,7 @@ SCAN_PROPORTION_PROPERTY
 SCAN_PROPORTION_DEFAULT
 ;
 
-105 c⁄° 
+106 c⁄° 
 	g°d
 ::
 °rög
@@ -2893,7 +2943,7 @@ SCAN_PROPORTION_DEFAULT
 READMODIFYWRITE_PROPORTION_PROPERTY
 ;
 
-106 c⁄° 
+107 c⁄° 
 	g°d
 ::
 °rög
@@ -2901,7 +2951,7 @@ READMODIFYWRITE_PROPORTION_PROPERTY
 READMODIFYWRITE_PROPORTION_DEFAULT
 ;
 
-112 c⁄° 
+113 c⁄° 
 	g°d
 ::
 °rög
@@ -2909,7 +2959,7 @@ READMODIFYWRITE_PROPORTION_DEFAULT
 REQUEST_DISTRIBUTION_PROPERTY
 ;
 
-113 c⁄° 
+114 c⁄° 
 	g°d
 ::
 °rög
@@ -2917,7 +2967,7 @@ REQUEST_DISTRIBUTION_PROPERTY
 REQUEST_DISTRIBUTION_DEFAULT
 ;
 
-118 c⁄° 
+119 c⁄° 
 	g°d
 ::
 °rög
@@ -2925,7 +2975,7 @@ REQUEST_DISTRIBUTION_DEFAULT
 ZERO_PADDING_PROPERTY
 ;
 
-119 c⁄° 
+120 c⁄° 
 	g°d
 ::
 °rög
@@ -2933,28 +2983,20 @@ ZERO_PADDING_PROPERTY
 ZERO_PADDING_DEFAULT
 ;
 
-124 c⁄° 
-	g°d
-::
-°rög
- 
-MIN_SCAN_LENGTH_PROPERTY
-;
-
 125 c⁄° 
 	g°d
 ::
 °rög
  
-MIN_SCAN_LENGTH_DEFAULT
+PREFIX_PADDING_PROPERTY
 ;
 
-130 c⁄° 
+126 c⁄° 
 	g°d
 ::
 °rög
  
-MAX_SCAN_LENGTH_PROPERTY
+PREFIX_PADDING_DEFAULT
 ;
 
 131 c⁄° 
@@ -2962,7 +3004,15 @@ MAX_SCAN_LENGTH_PROPERTY
 ::
 °rög
  
-MAX_SCAN_LENGTH_DEFAULT
+MIN_SCAN_LENGTH_PROPERTY
+;
+
+132 c⁄° 
+	g°d
+::
+°rög
+ 
+MIN_SCAN_LENGTH_DEFAULT
 ;
 
 137 c⁄° 
@@ -2970,7 +3020,7 @@ MAX_SCAN_LENGTH_DEFAULT
 ::
 °rög
  
-SCAN_LENGTH_DISTRIBUTION_PROPERTY
+MAX_SCAN_LENGTH_PROPERTY
 ;
 
 138 c⁄° 
@@ -2978,7 +3028,7 @@ SCAN_LENGTH_DISTRIBUTION_PROPERTY
 ::
 °rög
  
-SCAN_LENGTH_DISTRIBUTION_DEFAULT
+MAX_SCAN_LENGTH_DEFAULT
 ;
 
 144 c⁄° 
@@ -2986,7 +3036,7 @@ SCAN_LENGTH_DISTRIBUTION_DEFAULT
 ::
 °rög
  
-INSERT_ORDER_PROPERTY
+SCAN_LENGTH_DISTRIBUTION_PROPERTY
 ;
 
 145 c⁄° 
@@ -2994,31 +3044,7 @@ INSERT_ORDER_PROPERTY
 ::
 °rög
  
-INSERT_ORDER_DEFAULT
-;
-
-147 c⁄° 
-	g°d
-::
-°rög
- 
-INSERT_START_PROPERTY
-;
-
-148 c⁄° 
-	g°d
-::
-°rög
- 
-INSERT_START_DEFAULT
-;
-
-150 c⁄° 
-	g°d
-::
-°rög
- 
-RECORD_COUNT_PROPERTY
+SCAN_LENGTH_DISTRIBUTION_DEFAULT
 ;
 
 151 c⁄° 
@@ -3026,15 +3052,31 @@ RECORD_COUNT_PROPERTY
 ::
 °rög
  
-OPERATION_COUNT_PROPERTY
+INSERT_ORDER_PROPERTY
 ;
 
-156 c⁄° 
+152 c⁄° 
 	g°d
 ::
 °rög
  
-FIELD_NAME_PREFIX
+INSERT_ORDER_DEFAULT
+;
+
+154 c⁄° 
+	g°d
+::
+°rög
+ 
+INSERT_START_PROPERTY
+;
+
+155 c⁄° 
+	g°d
+::
+°rög
+ 
+INSERT_START_DEFAULT
 ;
 
 157 c⁄° 
@@ -3042,10 +3084,34 @@ FIELD_NAME_PREFIX
 ::
 °rög
  
+RECORD_COUNT_PROPERTY
+;
+
+158 c⁄° 
+	g°d
+::
+°rög
+ 
+OPERATION_COUNT_PROPERTY
+;
+
+163 c⁄° 
+	g°d
+::
+°rög
+ 
+FIELD_NAME_PREFIX
+;
+
+164 c⁄° 
+	g°d
+::
+°rög
+ 
 FIELD_NAME_PREFIX_DEFAULT
 ;
 
-163 
+170 
 vútuÆ
  
 Inô
@@ -3057,7 +3123,7 @@ Pr›îtõs
 p
 );
 
-165 
+172 
 vútuÆ
  
 boﬁ
@@ -3067,9 +3133,19 @@ DoIn£π
 DB
  &
 db
+, boﬁ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 );
 
-166 
+173 
 vútuÆ
  
 boﬁ
@@ -3079,9 +3155,19 @@ DoTønß˘i⁄
 DB
  &
 db
+, boﬁ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 );
 
-168 
+175 
 boﬁ
  
 ªad_Æl_fõlds
@@ -3089,7 +3175,7 @@ boﬁ
 	gªad_Æl_fõlds_
 ; }
 
-169 
+176 
 boﬁ
  
 wrôe_Æl_fõlds
@@ -3097,11 +3183,11 @@ wrôe_Æl_fõlds
 	gwrôe_Æl_fõlds_
 ; }
 
-171 
+178 
 C‹eW‹klﬂd
 () :
 
-172 
+179 
 fõld_cou¡_
 (0), 
 ªad_Æl_fõlds_
@@ -3111,7 +3197,7 @@ fõld_cou¡_
 wrôe_Æl_fõlds_
 (false),
 
-173 
+180 
 fõld_Àn_gíî©‹_
 (
 nuŒ±r
@@ -3121,7 +3207,7 @@ key_choo£r_
 fõld_choo£r_
 (nullptr),
 
-174 
+181 
 sˇn_Àn_choo£r_
 (
 nuŒ±r
@@ -3129,7 +3215,7 @@ nuŒ±r
 ö£π_key_£quí˚_
 (nullptr),
 
-175 
+182 
 å™ß˘i⁄_ö£π_key_£quí˚_
 (
 nuŒ±r
@@ -3141,53 +3227,53 @@ nuŒ±r
 ªc‹d_cou¡_
 (0) {
 
-178 
+185 
 	gvútuÆ
  ~
 C‹eW‹klﬂd
 () {
 
-179 
+186 
 dñëe
  
 	gfõld_Àn_gíî©‹_
 ;
 
-180 
+187 
 dñëe
  
 	gkey_choo£r_
 ;
 
-181 
+188 
 dñëe
  
 	gfõld_choo£r_
 ;
 
-182 
+189 
 dñëe
  
 	gsˇn_Àn_choo£r_
 ;
 
-183 
+190 
 dñëe
  
 	gö£π_key_£quí˚_
 ;
 
-184 
+191 
 dñëe
  
 	gå™ß˘i⁄_ö£π_key_£quí˚_
 ;
 
-187 
+194 
 	g¥Ÿe˘ed
 :
 
-188 
+195 
 Gíî©‹
 <
 uöt64_t
@@ -3201,7 +3287,7 @@ Pr›îtõs
 p
 );
 
-189 
+196 
 	g°d
 ::
 °rög
@@ -3213,7 +3299,7 @@ uöt64_t
 key_num
 );
 
-190 
+197 
 BuûdVÆues
 (
 °d
@@ -3227,7 +3313,7 @@ Fõld
 vÆues
 );
 
-191 
+198 
 BuûdSögÀVÆue
 (
 °d
@@ -3241,13 +3327,13 @@ Fõld
 upd©e
 );
 
-193 
+200 
 uöt64_t
  
 NextTønß˘i⁄KeyNum
 ();
 
-194 
+201 
 	g°d
 ::
 °rög
@@ -3255,47 +3341,107 @@ NextTønß˘i⁄KeyNum
 NextFõldName
 ();
 
-196 
+203 
 Tønß˘i⁄Ród
 (
 DB
  &
 db
+, 
+boﬁ
+ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 );
 
-197 
+204 
 Tønß˘i⁄RódModifyWrôe
 (
 DB
  &
 db
+, 
+boﬁ
+ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 );
 
-198 
+205 
 Tønß˘i⁄Sˇn
 (
 DB
  &
 db
+, 
+boﬁ
+ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 );
 
-199 
+206 
 Tønß˘i⁄Upd©e
 (
 DB
  &
 db
+, 
+boﬁ
+ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 );
 
-200 
+207 
 Tønß˘i⁄In£π
 (
 DB
  &
 db
+, 
+boﬁ
+ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 );
 
-202 
+209 
 	g°d
 ::
 °rög
@@ -3303,11 +3449,11 @@ db
 èbÀ_«me_
 ;
 
-203 
+210 
 	gfõld_cou¡_
 ;
 
-204 
+211 
 	g°d
 ::
 °rög
@@ -3315,19 +3461,19 @@ db
 fõld_¥efix_
 ;
 
-205 
+212 
 boﬁ
  
 	gªad_Æl_fõlds_
 ;
 
-206 
+213 
 boﬁ
  
 	gwrôe_Æl_fõlds_
 ;
 
-207 
+214 
 	gGíî©‹
 <
 	guöt64_t
@@ -3335,7 +3481,7 @@ boﬁ
 	gfõld_Àn_gíî©‹_
 ;
 
-208 
+215 
 	gDis¸ëeGíî©‹
 <
 	gO≥øti⁄
@@ -3343,7 +3489,7 @@ boﬁ
 	g›_choo£r_
 ;
 
-209 
+216 
 	gGíî©‹
 <
 	guöt64_t
@@ -3351,7 +3497,7 @@ boﬁ
 	gkey_choo£r_
 ;
 
-210 
+217 
 	gGíî©‹
 <
 	guöt64_t
@@ -3359,7 +3505,7 @@ boﬁ
 	gfõld_choo£r_
 ;
 
-211 
+218 
 	gGíî©‹
 <
 	guöt64_t
@@ -3367,39 +3513,59 @@ boﬁ
 	gsˇn_Àn_choo£r_
 ;
 
-212 
+219 
 Cou¡îGíî©‹
  *
 	gö£π_key_£quí˚_
 ;
 
-213 
+220 
 AcknowÀdgedCou¡îGíî©‹
  *
 	gå™ß˘i⁄_ö£π_key_£quí˚_
 ;
 
-214 
+221 
 boﬁ
  
 	g‹dîed_ö£πs_
 ;
 
-215 
+222 
 size_t
  
 	gªc‹d_cou¡_
 ;
 
-216 
+223 
 	gzîo_∑ddög_
 ;
 
-217 
+224 
 	g¥efix_∑ddög_
 ;
 
-220 
+225 
+	g°d
+::
+m≠
+<
+uöt64_t
+, 
+	guöt64_t
+> 
+	gkey_°©_m≠_
+;
+
+226 
+	g°d
+::
+mt19937
+ 
+mt_
+;
+
+229 
 ölöe
  
 uöt64_t
@@ -3409,13 +3575,13 @@ uöt64_t
 	$NextTønß˘i⁄KeyNum
 () {
 
-221 
+230 
 uöt64_t
  
 key_num
 ;
 
-223 
+232 
 key_num
  = 
 key_choo£r_
@@ -3423,29 +3589,7 @@ key_choo£r_
 	`Next
 ();
 
-224 
-°d
-::
-cout
- <<"[JH] N keyÇum :" << 
-key_num
- << std::
-ídl
-;
-
-225 
-°d
-::
-cout
- <<"[JH] N keyÜa° :" <<
-å™ß˘i⁄_ö£π_key_£quí˚_
-->
-	`La°
-(Ë<< std::
-ídl
-;
-
-226 } 
+233 } 
 key_num
  > 
 å™ß˘i⁄_ö£π_key_£quí˚_
@@ -3453,21 +3597,15 @@ key_num
 	`La°
 ());
 
-227 
-°d
-::
-cout
- <<"[JH] N Done\n";
-
-228  
+234  
 key_num
 ;
 
-229 
+235 
 	}
 }
 
-231 
+237 
 ölöe
  
 	g°d
@@ -3479,7 +3617,7 @@ C‹eW‹klﬂd
 	$NextFõldName
 () {
 
-232  
+238  
 °d
 ::
 	`°rög
@@ -3495,50 +3633,58 @@ fõld_choo£r_
 	`Next
 ()));
 
-233 
+239 
 	}
 }
 
-235 
+241 
 ölöe
  
 boﬁ
  
 	gC‹eW‹klﬂd
 ::
-	$DoIn£π
+DoIn£π
 (
 DB
  &
 db
+, boﬁ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 ) {
 
-236 c⁄° 
-°d
+242 
+uöt64_t
+ 
+	g√xt_£quí˚
+ = 
+ö£π_key_£quí˚_
+->
+Next
+();
+
+243 c⁄° 
+	g°d
 ::
 °rög
  
 key
  = 
-	`BuûdKeyName
+BuûdKeyName
 (
-ö£π_key_£quí˚_
-->
-	`Next
-());
+√xt_£quí˚
+);
 
-237 
-°d
-::
-cout
- << "[JH] key : " << 
-key
- << std::
-ídl
-;
-
-238 
-°d
+244 
+	g°d
 ::
 ve˘‹
 <
@@ -3549,16 +3695,26 @@ Fõld
 fõlds
 ;
 
-239 
-	`BuûdVÆues
+245 
+BuûdVÆues
 (
 fõlds
 );
 
-240  
-db
+247 if(
+	g¥öt_key_°©
+) {
+
+248 
+	gkey_°©s
+[
+√xt_£quí˚
+]++;
+
+252  
+	gdb
 .
-	`In£π
+In£π
 (
 èbÀ_«me_
 , 
@@ -3571,252 +3727,188 @@ DB
 kOK
 ;
 
-241 
-	}
-}
-
-243 
+255 
 ölöe
  
 boﬁ
  
 	gC‹eW‹klﬂd
 ::
-	$DoTønß˘i⁄
+DoTønß˘i⁄
 (
 DB
  &
 db
+, boﬁ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 ) {
 
-244 
-°©us
+256 
+	g°©us
  = -1;
 
-245 
-›_choo£r_
+257 
+	g›_choo£r_
 .
-	`Next
+Next
 ()) {
 
-246 
-READ
-:
-
-247 
-°©us
- = 
-	`Tønß˘i⁄Ród
-(
-db
-);
-
-249 
-UPDATE
-:
-
-250 
-°©us
- = 
-	`Tønß˘i⁄Upd©e
-(
-db
-);
-
-252 
-INSERT
-:
-
-253 
-°©us
- = 
-	`Tønß˘i⁄In£π
-(
-db
-);
-
-255 
-SCAN
-:
-
-256 
-°©us
- = 
-	`Tønß˘i⁄Sˇn
-(
-db
-);
-
 258 
-READMODIFYWRITE
+	gREAD
 :
 
 259 
 °©us
  = 
-	`Tønß˘i⁄RódModifyWrôe
+Tønß˘i⁄Ród
 (
 db
+, 
+¥öt_key_°©
+, 
+key_°©s
 );
 
+261 
+	gUPDATE
+:
+
 262 
+°©us
+ = 
+Tønß˘i⁄Upd©e
+(
+db
+, 
+¥öt_key_°©
+, 
+key_°©s
+);
+
+264 
+	gINSERT
+:
+
+265 
+°©us
+ = 
+Tønß˘i⁄In£π
+(
+db
+, 
+¥öt_key_°©
+, 
+key_°©s
+);
+
+267 
+	gSCAN
+:
+
+268 
+°©us
+ = 
+Tønß˘i⁄Sˇn
+(
+db
+, 
+¥öt_key_°©
+, 
+key_°©s
+);
+
+270 
+	gREADMODIFYWRITE
+:
+
+271 
+°©us
+ = 
+Tønß˘i⁄RódModifyWrôe
+(
+db
+, 
+¥öt_key_°©
+, 
+key_°©s
+);
+
+274 
 throw
  
 utûs
 ::
-	`Ex˚±i⁄
+Ex˚±i⁄
 ("OperationÑequest isÇotÑecognized!");
 
-264 
-	`as£π
+276 
+as£π
 (
 °©us
  >= 0);
 
-265  (
-°©us
+277  (
+	g°©us
  =
 DB
 ::
 kOK
 );
 
-266 
-	}
-}
-
-268 
+280 
 ölöe
  
 	gC‹eW‹klﬂd
 ::
-	$Tønß˘i⁄Ród
+Tønß˘i⁄Ród
 (
 DB
  &
 db
-) {
-
-269 
-uöt64_t
+, 
+boﬁ
  
-key_num
- = 
-	`NextTønß˘i⁄KeyNum
-();
-
-270 c⁄° 
+¥öt_key_°©
+, 
 °d
 ::
-°rög
- 
-key
- = 
-	`BuûdKeyName
-(
-key_num
-);
-
-271 
-°d
-::
-ve˘‹
+m≠
 <
-DB
-::
-Fõld
-> 
-ªsu…
-;
-
-272 i‡(!
-	`ªad_Æl_fõlds
-()) {
-
-273 
-°d
-::
-ve˘‹
-<°d::
-°rög
-> 
-fõlds
-;
-
-274 
-fõlds
-.
-	`push_back
-(
-	`NextFõldName
-());
-
-275  
-db
-.
-	`Ród
-(
-èbÀ_«me_
-, 
-key
-, &
-fõlds
-, 
-ªsu…
-);
-
-277  
-db
-.
-	`Ród
-(
-èbÀ_«me_
-, 
-key
-, 
-NULL
-, 
-ªsu…
-);
-
-279 
-	}
-}
+uöt64_t
+, uöt64_t>& 
+key_°©s
+) {
 
 281 
-ölöe
- 
-	gC‹eW‹klﬂd
-::
-	$Tønß˘i⁄RódModifyWrôe
-(
-DB
- &
-db
-) {
-
-282 
 uöt64_t
  
-key_num
+	gkey_num
  = 
-	`NextTønß˘i⁄KeyNum
+NextTønß˘i⁄KeyNum
 ();
 
-283 c⁄° 
-°d
+282 c⁄° 
+	g°d
 ::
 °rög
  
 key
  = 
-	`BuûdKeyName
+BuûdKeyName
 (
 key_num
 );
 
-284 
-°d
+283 
+	g°d
 ::
 ve˘‹
 <
@@ -3827,32 +3919,44 @@ Fõld
 ªsu…
 ;
 
-286 i‡(!
-	`ªad_Æl_fõlds
+285 if(
+	g¥öt_key_°©
+) {
+
+286 
+	gkey_°©s
+[
+key_num
+]++;
+
+290 i‡(!
+ªad_Æl_fõlds
 ()) {
 
-287 
-°d
+291 
+	g°d
 ::
 ve˘‹
-<°d::
+<
+°d
+::
 °rög
 > 
 fõlds
 ;
 
-288 
-fõlds
+292 
+	gfõlds
 .
-	`push_back
+push_back
 (
-	`NextFõldName
+NextFõldName
 ());
 
-289 
-db
+293  
+	gdb
 .
-	`Ród
+Ród
 (
 èbÀ_«me_
 , 
@@ -3863,10 +3967,10 @@ fõlds
 ªsu…
 );
 
-291 
-db
+295  
+	gdb
 .
-	`Ród
+Ród
 (
 èbÀ_«me_
 , 
@@ -3877,8 +3981,126 @@ NULL
 ªsu…
 );
 
-294 
+299 
+ölöe
+ 
+	gC‹eW‹klﬂd
+::
+Tønß˘i⁄RódModifyWrôe
+(
+DB
+ &
+db
+, 
+boﬁ
+ 
+¥öt_key_°©
+, 
 °d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
+) {
+
+300 
+uöt64_t
+ 
+	gkey_num
+ = 
+NextTønß˘i⁄KeyNum
+();
+
+301 c⁄° 
+	g°d
+::
+°rög
+ 
+key
+ = 
+BuûdKeyName
+(
+key_num
+);
+
+302 
+	g°d
+::
+ve˘‹
+<
+DB
+::
+Fõld
+> 
+ªsu…
+;
+
+304 if(
+	g¥öt_key_°©
+) {
+
+305 
+	gkey_°©s
+[
+key_num
+]++;
+
+309 i‡(!
+ªad_Æl_fõlds
+()) {
+
+310 
+	g°d
+::
+ve˘‹
+<
+°d
+::
+°rög
+> 
+fõlds
+;
+
+311 
+	gfõlds
+.
+push_back
+(
+NextFõldName
+());
+
+312 
+	gdb
+.
+Ród
+(
+èbÀ_«me_
+, 
+key
+, &
+fõlds
+, 
+ªsu…
+);
+
+314 
+	gdb
+.
+Ród
+(
+èbÀ_«me_
+, 
+key
+, 
+NULL
+, 
+ªsu…
+);
+
+317 
+	g°d
 ::
 ve˘‹
 <
@@ -3889,26 +4111,26 @@ Fõld
 vÆues
 ;
 
-295 i‡(
-	`wrôe_Æl_fõlds
+318 i‡(
+wrôe_Æl_fõlds
 ()) {
 
-296 
-	`BuûdVÆues
+319 
+BuûdVÆues
 (
 vÆues
 );
 
-298 
-	`BuûdSögÀVÆue
+321 
+BuûdSögÀVÆue
 (
 vÆues
 );
 
-300  
-db
+323  
+	gdb
 .
-	`Upd©e
+Upd©e
 (
 èbÀ_«me_
 , 
@@ -3917,55 +4139,65 @@ key
 vÆues
 );
 
-301 
-	}
-}
-
-303 
+326 
 ölöe
  
 	gC‹eW‹klﬂd
 ::
-	$Tønß˘i⁄Sˇn
+Tønß˘i⁄Sˇn
 (
 DB
  &
 db
+, 
+boﬁ
+ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 ) {
 
-304 
+327 
 uöt64_t
  
-key_num
+	gkey_num
  = 
-	`NextTønß˘i⁄KeyNum
+NextTønß˘i⁄KeyNum
 ();
 
-305 c⁄° 
-°d
+328 c⁄° 
+	g°d
 ::
 °rög
  
 key
  = 
-	`BuûdKeyName
+BuûdKeyName
 (
 key_num
 );
 
-306 
-Àn
+329 
+	gÀn
  = 
 sˇn_Àn_choo£r_
 ->
-	`Next
+Next
 ();
 
-307 
-°d
+330 
+	g°d
 ::
 ve˘‹
-<°d::ve˘‹<
+<
+°d
+::ve˘‹<
 DB
 ::
 Fõld
@@ -3973,32 +4205,44 @@ Fõld
 ªsu…
 ;
 
-308 i‡(!
-	`ªad_Æl_fõlds
+332 if(
+	g¥öt_key_°©
+) {
+
+333 
+	gkey_°©s
+[
+key_num
+]++;
+
+337 i‡(!
+ªad_Æl_fõlds
 ()) {
 
-309 
-°d
+338 
+	g°d
 ::
 ve˘‹
-<°d::
+<
+°d
+::
 °rög
 > 
 fõlds
 ;
 
-310 
-fõlds
+339 
+	gfõlds
 .
-	`push_back
+push_back
 (
-	`NextFõldName
+NextFõldName
 ());
 
-311  
-db
+340  
+	gdb
 .
-	`Sˇn
+Sˇn
 (
 èbÀ_«me_
 , 
@@ -4011,10 +4255,10 @@ fõlds
 ªsu…
 );
 
-313  
-db
+342  
+	gdb
 .
-	`Sˇn
+Sˇn
 (
 èbÀ_«me_
 , 
@@ -4027,44 +4271,52 @@ NULL
 ªsu…
 );
 
-315 
-	}
-}
-
-317 
+346 
 ölöe
  
 	gC‹eW‹klﬂd
 ::
-	$Tønß˘i⁄Upd©e
+Tønß˘i⁄Upd©e
 (
 DB
  &
 db
+, 
+boﬁ
+ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 ) {
 
-318 
+347 
 uöt64_t
  
-key_num
+	gkey_num
  = 
-	`NextTønß˘i⁄KeyNum
+NextTønß˘i⁄KeyNum
 ();
 
-319 c⁄° 
-°d
+348 c⁄° 
+	g°d
 ::
 °rög
  
 key
  = 
-	`BuûdKeyName
+BuûdKeyName
 (
 key_num
 );
 
-320 
-°d
+349 
+	g°d
 ::
 ve˘‹
 <
@@ -4075,26 +4327,36 @@ Fõld
 vÆues
 ;
 
-321 i‡(
-	`wrôe_Æl_fõlds
+351 if(
+	g¥öt_key_°©
+) {
+
+352 
+	gkey_°©s
+[
+key_num
+]++;
+
+356 i‡(
+wrôe_Æl_fõlds
 ()) {
 
-322 
-	`BuûdVÆues
+357 
+BuûdVÆues
 (
 vÆues
 );
 
-324 
-	`BuûdSögÀVÆue
+359 
+BuûdSögÀVÆue
 (
 vÆues
 );
 
-326  
-db
+361  
+	gdb
 .
-	`Upd©e
+Upd©e
 (
 èbÀ_«me_
 , 
@@ -4103,46 +4365,54 @@ key
 vÆues
 );
 
-327 
-	}
-}
-
-329 
+364 
 ölöe
  
 	gC‹eW‹klﬂd
 ::
-	$Tønß˘i⁄In£π
+Tønß˘i⁄In£π
 (
 DB
  &
 db
+, 
+boﬁ
+ 
+¥öt_key_°©
+, 
+°d
+::
+m≠
+<
+uöt64_t
+, uöt64_t>& 
+key_°©s
 ) {
 
-330 
+365 
 uöt64_t
  
-key_num
+	gkey_num
  = 
 å™ß˘i⁄_ö£π_key_£quí˚_
 ->
-	`Next
+Next
 ();
 
-331 c⁄° 
-°d
+366 c⁄° 
+	g°d
 ::
 °rög
  
 key
  = 
-	`BuûdKeyName
+BuûdKeyName
 (
 key_num
 );
 
-332 
-°d
+367 
+	g°d
 ::
 ve˘‹
 <
@@ -4153,18 +4423,28 @@ Fõld
 vÆues
 ;
 
-333 
-	`BuûdVÆues
+368 
+BuûdVÆues
 (
 vÆues
 );
 
-334 
-s
+370 if(
+	g¥öt_key_°©
+) {
+
+371 
+	gkey_°©s
+[
+key_num
+]++;
+
+375 
+	gs
  = 
 db
 .
-	`In£π
+In£π
 (
 èbÀ_«me_
 , 
@@ -4173,21 +4453,17 @@ key
 vÆues
 );
 
-335 
-å™ß˘i⁄_ö£π_key_£quí˚_
+376 
+	gå™ß˘i⁄_ö£π_key_£quí˚_
 ->
-	`AcknowÀdge
+AcknowÀdge
 (
 key_num
 );
 
-336  
-s
+377  
+	gs
 ;
-
-337 
-	}
-}
 
 	@core/countdown_latch.h
 
@@ -8174,6 +8450,16 @@ do_lﬂd
 58 c⁄° 
 boﬁ
  
+¥öt_key_°©
+ = (
+¥›s
+.
+	`GëPr›îty
+("printkeystat", "false") == "true");
+
+59 c⁄° 
+boﬁ
+ 
 do_å™ß˘i⁄
  = (
 ¥›s
@@ -8181,13 +8467,13 @@ do_å™ß˘i⁄
 	`GëPr›îty
 ("dotransaction", "false") == "true");
 
-59 i‡(!
+60 i‡(!
 do_lﬂd
  && !
 do_å™ß˘i⁄
 ) {
 
-60 
+61 
 °d
 ::
 ˚º
@@ -8195,11 +8481,11 @@ do_å™ß˘i⁄
 ídl
 ;
 
-61 
+62 
 	`exô
 (1);
 
-64 c⁄° 
+65 c⁄° 
 num_thªads
  = 
 	`°oi
@@ -8209,7 +8495,7 @@ num_thªads
 	`GëPr›îty
 ("threadcount", "1"));
 
-66 
+67 
 ycsbc
 ::
 Mósuªmíts
@@ -8217,7 +8503,7 @@ Mósuªmíts
 mósuªmíts
 ;
 
-67 
+68 
 °d
 ::
 ve˘‹
@@ -8229,13 +8515,13 @@ DB
 dbs
 ;
 
-68 
+69 
 i
  = 0; i < 
 num_thªads
 ; i++) {
 
-69 
+70 
 ycsbc
 ::
 DB
@@ -8251,13 +8537,13 @@ DBFa˘‹y
 mósuªmíts
 );
 
-70 i‡(
+71 i‡(
 db
  =
 nuŒ±r
 ) {
 
-71 
+72 
 °d
 ::
 ˚º
@@ -8267,11 +8553,11 @@ nuŒ±r
 ídl
 ;
 
-72 
+73 
 	`exô
 (1);
 
-74 
+75 
 dbs
 .
 	`push_back
@@ -8279,7 +8565,7 @@ dbs
 db
 );
 
-77 
+78 
 ycsbc
 ::
 C‹eW‹klﬂd
@@ -8287,7 +8573,7 @@ C‹eW‹klﬂd
 wl
 ;
 
-78 
+79 
 wl
 .
 	`Inô
@@ -8295,7 +8581,7 @@ wl
 ¥›s
 );
 
-80 c⁄° 
+81 c⁄° 
 boﬁ
  
 show_°©us
@@ -8305,7 +8591,7 @@ show_°©us
 	`GëPr›îty
 ("status", "false") == "true");
 
-81 c⁄° 
+82 c⁄° 
 °©us_öãrvÆ
  = 
 °d
@@ -8317,11 +8603,11 @@ show_°©us
 	`GëPr›îty
 ("status.interval", "10"));
 
-84 i‡(
+85 i‡(
 do_lﬂd
 ) {
 
-85 c⁄° 
+86 c⁄° 
 tŸÆ_›s
  = 
 	`°oi
@@ -8335,7 +8621,7 @@ C‹eW‹klﬂd
 RECORD_COUNT_PROPERTY
 ]);
 
-87 
+88 
 Cou¡DownL©ch
  
 	`œtch
@@ -8343,7 +8629,7 @@ Cou¡DownL©ch
 num_thªads
 );
 
-88 
+89 
 ycsbc
 ::
 utûs
@@ -8353,13 +8639,13 @@ Timî
 timî
 ;
 
-90 
+91 
 timî
 .
 	`Sèπ
 ();
 
-91 
+92 
 °d
 ::
 futuª
@@ -8367,11 +8653,11 @@ futuª
 °©us_futuª
 ;
 
-92 i‡(
+93 i‡(
 show_°©us
 ) {
 
-93 
+94 
 °©us_futuª
  = 
 °d
@@ -8385,7 +8671,7 @@ async
 SètusThªad
 ,
 
-94 &
+95 &
 mósuªmíts
 , &
 œtch
@@ -8393,7 +8679,7 @@ mósuªmíts
 °©us_öãrvÆ
 );
 
-96 
+97 
 °d
 ::
 ve˘‹
@@ -8403,13 +8689,13 @@ futuª
 ˛õ¡_thªads
 ;
 
-97 
+98 
 i
  = 0; i < 
 num_thªads
 ; ++i) {
 
-98 
+99 
 thªad_›s
  = 
 tŸÆ_›s
@@ -8417,7 +8703,7 @@ tŸÆ_›s
 num_thªads
 ;
 
-99 i‡(
+100 i‡(
 i
  < 
 tŸÆ_›s
@@ -8425,11 +8711,11 @@ tŸÆ_›s
 num_thªads
 ) {
 
-100 
+101 
 thªad_›s
 ++;
 
-102 
+103 
 ˛õ¡_thªads
 .
 	`em∂a˚_back
@@ -8453,17 +8739,19 @@ i
 wl
 ,
 
-103 
+104 
 thªad_›s
 , 
 åue
-,Årue, !
+,Årue, 
+¥öt_key_°©
+, !
 do_å™ß˘i⁄
 , &
 œtch
 ));
 
-105 
+106 
 	`as£π
 (()
 ˛õ¡_thªads
@@ -8473,17 +8761,17 @@ do_å™ß˘i⁄
 num_thªads
 );
 
-107 
+108 
 sum
  = 0;
 
-108 autÿ&
+109 autÿ&
 n
  : 
 ˛õ¡_thªads
 ) {
 
-109 
+110 
 	`as£π
 (
 n
@@ -8491,7 +8779,7 @@ n
 	`vÆid
 ());
 
-110 
+111 
 sum
  +
 n
@@ -8499,7 +8787,7 @@ n
 	`gë
 ();
 
-112 
+113 
 ru¡ime
  = 
 timî
@@ -8507,17 +8795,17 @@ timî
 	`End
 ();
 
-114 i‡(
+115 i‡(
 show_°©us
 ) {
 
-115 
+116 
 °©us_futuª
 .
 	`waô
 ();
 
-118 
+119 
 °d
 ::
 cout
@@ -8527,7 +8815,7 @@ ru¡ime
 ídl
 ;
 
-119 
+120 
 °d
 ::
 cout
@@ -8537,7 +8825,7 @@ sum
 ídl
 ;
 
-120 
+121 
 °d
 ::
 cout
@@ -8549,13 +8837,13 @@ ru¡ime
 ídl
 ;
 
-123 
+124 
 mósuªmíts
 .
 	`Re£t
 ();
 
-124 
+125 
 °d
 ::
 this_thªad
@@ -8573,11 +8861,11 @@ chr⁄o
 	`GëPr›îty
 ("sleepafterload", "0"))));
 
-127 i‡(
+128 i‡(
 do_å™ß˘i⁄
 ) {
 
-128 c⁄° 
+129 c⁄° 
 tŸÆ_›s
  = 
 	`°oi
@@ -8591,7 +8879,7 @@ C‹eW‹klﬂd
 OPERATION_COUNT_PROPERTY
 ]);
 
-130 
+131 
 Cou¡DownL©ch
  
 	`œtch
@@ -8599,7 +8887,7 @@ Cou¡DownL©ch
 num_thªads
 );
 
-131 
+132 
 ycsbc
 ::
 utûs
@@ -8609,13 +8897,13 @@ Timî
 timî
 ;
 
-133 
+134 
 timî
 .
 	`Sèπ
 ();
 
-134 
+135 
 °d
 ::
 futuª
@@ -8623,11 +8911,11 @@ futuª
 °©us_futuª
 ;
 
-135 i‡(
+136 i‡(
 show_°©us
 ) {
 
-136 
+137 
 °©us_futuª
  = 
 °d
@@ -8641,7 +8929,7 @@ async
 SètusThªad
 ,
 
-137 &
+138 &
 mósuªmíts
 , &
 œtch
@@ -8649,7 +8937,7 @@ mósuªmíts
 °©us_öãrvÆ
 );
 
-139 
+140 
 °d
 ::
 ve˘‹
@@ -8659,13 +8947,13 @@ futuª
 ˛õ¡_thªads
 ;
 
-140 
+141 
 i
  = 0; i < 
 num_thªads
 ; ++i) {
 
-141 
+142 
 thªad_›s
  = 
 tŸÆ_›s
@@ -8673,7 +8961,7 @@ tŸÆ_›s
 num_thªads
 ;
 
-142 i‡(
+143 i‡(
 i
  < 
 tŸÆ_›s
@@ -8681,11 +8969,11 @@ tŸÆ_›s
 num_thªads
 ) {
 
-143 
+144 
 thªad_›s
 ++;
 
-145 
+146 
 ˛õ¡_thªads
 .
 	`em∂a˚_back
@@ -8709,19 +8997,21 @@ i
 wl
 ,
 
-146 
+147 
 thªad_›s
 , 
 Ál£
 , !
 do_lﬂd
 , 
+¥öt_key_°©
+, 
 åue
 , &
 œtch
 ));
 
-148 
+149 
 	`as£π
 (()
 ˛õ¡_thªads
@@ -8731,17 +9021,17 @@ do_lﬂd
 num_thªads
 );
 
-150 
+151 
 sum
  = 0;
 
-151 autÿ&
+152 autÿ&
 n
  : 
 ˛õ¡_thªads
 ) {
 
-152 
+153 
 	`as£π
 (
 n
@@ -8749,7 +9039,7 @@ n
 	`vÆid
 ());
 
-153 
+154 
 sum
  +
 n
@@ -8757,7 +9047,7 @@ n
 	`gë
 ();
 
-155 
+156 
 ru¡ime
  = 
 timî
@@ -8765,17 +9055,17 @@ timî
 	`End
 ();
 
-157 i‡(
+158 i‡(
 show_°©us
 ) {
 
-158 
+159 
 °©us_futuª
 .
 	`waô
 ();
 
-161 
+162 
 °d
 ::
 cout
@@ -8785,7 +9075,7 @@ ru¡ime
 ídl
 ;
 
-162 
+163 
 °d
 ::
 cout
@@ -8795,7 +9085,7 @@ sum
 ídl
 ;
 
-163 
+164 
 °d
 ::
 cout
@@ -8807,13 +9097,13 @@ ru¡ime
 ídl
 ;
 
-166 
+167 
 i
  = 0; i < 
 num_thªads
 ; i++) {
 
-167 
+168 
 dñëe
  
 dbs
@@ -8821,11 +9111,11 @@ dbs
 i
 ];
 
-169 
+170 
 	}
 }
 
-171 
+172 
 	$P¨£Comm™dLöe
 (
 ¨gc
@@ -8841,11 +9131,11 @@ Pr›îtõs
 ¥›s
 ) {
 
-172 
+173 
 ¨gödex
  = 1;
 
-173 
+174 
 ¨gödex
  < 
 ¨gc
@@ -8855,7 +9145,7 @@ Pr›îtõs
 ¨gv
 [argindex], "-")) {
 
-174 i‡(
+175 i‡(
 	`°rcmp
 (
 ¨gv
@@ -8863,17 +9153,17 @@ Pr›îtõs
 ¨gödex
 ], "-load") == 0) {
 
-175 
+176 
 ¥›s
 .
 	`SëPr›îty
 ("doload", "true");
 
-176 
+177 
 ¨gödex
 ++;
 
-177 } i‡(
+178 } i‡(
 	`°rcmp
 (
 ¨gv
@@ -8881,17 +9171,35 @@ Pr›îtõs
 ¨gödex
 ], "-run") == 0 || strcmp(argv[argindex], "-t") == 0) {
 
-178 
+179 
 ¥›s
 .
 	`SëPr›îty
 ("dotransaction", "true");
 
-179 
+180 
 ¨gödex
 ++;
 
-180 } i‡(
+181 } i‡(
+	`°rcmp
+(
+¨gv
+[
+¨gödex
+], "-print_key_stat") == 0) {
+
+182 
+¥›s
+.
+	`SëPr›îty
+("printkeystat", "true");
+
+183 
+¨gödex
+++;
+
+185 i‡(
 	`°rcmp
 (
 ¨gv
@@ -8899,23 +9207,23 @@ Pr›îtõs
 ¨gödex
 ], "-threads") == 0) {
 
-181 
+186 
 ¨gödex
 ++;
 
-182 i‡(
+187 i‡(
 ¨gödex
  >
 ¨gc
 ) {
 
-183 
+188 
 	`UßgeMesßge
 (
 ¨gv
 [0]);
 
-184 
+189 
 °d
 ::
 ˚º
@@ -8923,11 +9231,11 @@ Pr›îtõs
 ídl
 ;
 
-185 
+190 
 	`exô
 (0);
 
-187 
+192 
 ¥›s
 .
 	`SëPr›îty
@@ -8937,11 +9245,11 @@ Pr›îtõs
 ¨gödex
 ]);
 
-188 
+193 
 ¨gödex
 ++;
 
-189 } i‡(
+194 } i‡(
 	`°rcmp
 (
 ¨gv
@@ -8949,23 +9257,23 @@ Pr›îtõs
 ¨gödex
 ], "-db") == 0) {
 
-190 
+195 
 ¨gödex
 ++;
 
-191 i‡(
+196 i‡(
 ¨gödex
  >
 ¨gc
 ) {
 
-192 
+197 
 	`UßgeMesßge
 (
 ¨gv
 [0]);
 
-193 
+198 
 °d
 ::
 ˚º
@@ -8973,11 +9281,11 @@ Pr›îtõs
 ídl
 ;
 
-194 
+199 
 	`exô
 (0);
 
-196 
+201 
 ¥›s
 .
 	`SëPr›îty
@@ -8987,11 +9295,11 @@ Pr›îtõs
 ¨gödex
 ]);
 
-197 
+202 
 ¨gödex
 ++;
 
-198 } i‡(
+203 } i‡(
 	`°rcmp
 (
 ¨gv
@@ -8999,23 +9307,23 @@ Pr›îtõs
 ¨gödex
 ], "-P") == 0) {
 
-199 
+204 
 ¨gödex
 ++;
 
-200 i‡(
+205 i‡(
 ¨gödex
  >
 ¨gc
 ) {
 
-201 
+206 
 	`UßgeMesßge
 (
 ¨gv
 [0]);
 
-202 
+207 
 °d
 ::
 ˚º
@@ -9023,11 +9331,11 @@ Pr›îtõs
 ídl
 ;
 
-203 
+208 
 	`exô
 (0);
 
-205 
+210 
 °d
 ::
 °rög
@@ -9039,7 +9347,7 @@ Pr›îtõs
 ¨gödex
 ]);
 
-206 
+211 
 °d
 ::
 if°ªam
@@ -9051,11 +9359,11 @@ if°ªam
 ¨gödex
 ]);
 
-207 
+212 
 åy
  {
 
-208 
+213 
 ¥›s
 .
 	`Lﬂd
@@ -9063,7 +9371,7 @@ if°ªam
 öput
 );
 
-209 } 
+214 } 
 	`ˇtch
  (c⁄° 
 °d
@@ -9073,7 +9381,7 @@ if°ªam
 mesßge
 ) {
 
-210 
+215 
 °d
 ::
 ˚º
@@ -9083,21 +9391,21 @@ mesßge
 ídl
 ;
 
-211 
+216 
 	`exô
 (0);
 
-213 
+218 
 öput
 .
 	`˛o£
 ();
 
-214 
+219 
 ¨gödex
 ++;
 
-215 } i‡(
+220 } i‡(
 	`°rcmp
 (
 ¨gv
@@ -9105,23 +9413,23 @@ mesßge
 ¨gödex
 ], "-p") == 0) {
 
-216 
+221 
 ¨gödex
 ++;
 
-217 i‡(
+222 i‡(
 ¨gödex
  >
 ¨gc
 ) {
 
-218 
+223 
 	`UßgeMesßge
 (
 ¨gv
 [0]);
 
-219 
+224 
 °d
 ::
 ˚º
@@ -9129,11 +9437,11 @@ mesßge
 ídl
 ;
 
-220 
+225 
 	`exô
 (0);
 
-222 
+227 
 °d
 ::
 °rög
@@ -9145,7 +9453,7 @@ mesßge
 ¨gödex
 ]);
 
-223 
+228 
 size_t
  
 eq
@@ -9155,7 +9463,7 @@ eq
 	`föd
 ('=');
 
-224 i‡(
+229 i‡(
 eq
  =
 °d
@@ -9165,23 +9473,23 @@ eq
 ≈os
 ) {
 
-225 
+230 
 °d
 ::
 ˚º
  << "Argument '-p'ÉxpectedÅo be in key=value format "
 
-226 "”.g., -∞›î©i⁄cou¡=99999)" << 
+231 "”.g., -∞›î©i⁄cou¡=99999)" << 
 °d
 ::
 ídl
 ;
 
-227 
+232 
 	`exô
 (0);
 
-229 
+234 
 ¥›s
 .
 	`SëPr›îty
@@ -9199,7 +9507,7 @@ utûs
 eq
 )),
 
-230 
+235 
 ycsbc
 ::
 utûs
@@ -9213,11 +9521,11 @@ utûs
 eq
  + 1)));
 
-231 
+236 
 ¨gödex
 ++;
 
-232 } i‡(
+237 } i‡(
 	`°rcmp
 (
 ¨gv
@@ -9225,23 +9533,23 @@ eq
 ¨gödex
 ], "-s") == 0) {
 
-233 
+238 
 ¥›s
 .
 	`SëPr›îty
 ("status", "true");
 
-234 
+239 
 ¨gödex
 ++;
 
-236 
+241 
 	`UßgeMesßge
 (
 ¨gv
 [0]);
 
-237 
+242 
 °d
 ::
 ˚º
@@ -9253,57 +9561,57 @@ eq
 ídl
 ;
 
-238 
+243 
 	`exô
 (0);
 
-242 i‡(
+247 i‡(
 ¨gödex
  =1 ||árgödex !
 ¨gc
 ) {
 
-243 
+248 
 	`UßgeMesßge
 (
 ¨gv
 [0]);
 
-244 
+249 
 	`exô
 (0);
 
-246 
+251 
 	}
 }
 
-248 
+253 
 	$UßgeMesßge
 (c⁄° *
 comm™d
 ) {
 
-249 
+254 
 °d
 ::
 cout
  <<
 
-250 "Ußge: " << 
+255 "Ußge: " << 
 comm™d
  << " [options]\n"
 
-263 << 
+268 << 
 °d
 ::
 ídl
 ;
 
-264 
+269 
 	}
 }
 
-266 
+271 
 ölöe
  
 boﬁ
@@ -9315,7 +9623,7 @@ boﬁ
 ¥e
 ) {
 
-267  
+272  
 	`°∫cmp
 (
 °r
@@ -9325,7 +9633,7 @@ boﬁ
 	`°æí
 (pre)) == 0;
 
-268 
+273 
 	}
 }
 
@@ -9507,13 +9815,13 @@ uöt64_t
 uöt64_t
  
 	gzùf_bô_
- = 10000;
+ = 1<<14;
 
 43 c⁄° 
 uöt64_t
  
 	gunif‹m_bô_
- = 1000;
+ = 1<<18;
 
 44 
 ZùfünGíî©‹
@@ -21814,18 +22122,6 @@ d©a
 ;
 
 385 
-	g°d
-::
-cout
- << "[JH] key : " << 
-key
- << 
-°d
-::
-ídl
-;
-
-386 
 	grocksdb
 ::
 Sètus
@@ -21845,23 +22141,23 @@ key
 d©a
 );
 
-387 i‡(
+386 i‡(
 	gs
 .
 IsNŸFound
 ()) {
 
-388  
+387  
 	gkNŸFound
 ;
 
-389 } i‡(!
+388 } i‡(!
 	gs
 .
 ok
 ()) {
 
-390 
+389 
 throw
  
 	gutûs
@@ -21877,13 +22173,13 @@ s
 ToSåög
 ());
 
-392 i‡(
+391 i‡(
 	gfõlds
  !
 nuŒ±r
 ) {
 
-393 
+392 
 De£rülizeRowFûãr
 (
 ªsu…
@@ -21893,7 +22189,7 @@ d©a
 fõlds
 );
 
-395 
+394 
 De£rülizeRow
 (
 ªsu…
@@ -21901,7 +22197,7 @@ De£rülizeRow
 d©a
 );
 
-396 
+395 
 as£π
 (
 ªsu…
@@ -21915,11 +22211,11 @@ size_t
 fõldcou¡_
 ));
 
-398  
+397  
 	gkOK
 ;
 
-401 
+400 
 	gDB
 ::
 Sètus
@@ -21939,7 +22235,7 @@ key
 Àn
 ,
 
-402 c⁄° 
+401 c⁄° 
 °d
 ::
 ve˘‹
@@ -21949,7 +22245,7 @@ ve˘‹
 fõlds
 ,
 
-403 
+402 
 °d
 ::
 ve˘‹
@@ -21959,7 +22255,7 @@ Fõld
 ªsu…
 ) {
 
-404 
+403 
 rocksdb
 ::
 Iãøt‹
@@ -21973,7 +22269,7 @@ NewIãøt‹
 RódO±i⁄s
 ());
 
-405 
+404 
 	gdb_ôî
 ->
 Sìk
@@ -21981,7 +22277,7 @@ Sìk
 key
 );
 
-406 
+405 
 	gi
  = 0; 
 	gdb_ôî
@@ -21991,7 +22287,7 @@ VÆid
 	gÀn
 ; i++) {
 
-407 
+406 
 	g°d
 ::
 °rög
@@ -22005,7 +22301,7 @@ vÆue
 ToSåög
 ();
 
-408 
+407 
 	gªsu…
 .
 push_back
@@ -22017,7 +22313,7 @@ ve˘‹
 Fõld
 >());
 
-409 
+408 
 	g°d
 ::
 ve˘‹
@@ -22031,13 +22327,13 @@ vÆues
 back
 ();
 
-410 i‡(
+409 i‡(
 	gfõlds
  !
 nuŒ±r
 ) {
 
-411 
+410 
 De£rülizeRowFûãr
 (
 vÆues
@@ -22047,7 +22343,7 @@ d©a
 fõlds
 );
 
-413 
+412 
 De£rülizeRow
 (
 vÆues
@@ -22055,7 +22351,7 @@ vÆues
 d©a
 );
 
-414 
+413 
 as£π
 (
 vÆues
@@ -22069,23 +22365,23 @@ size_t
 fõldcou¡_
 ));
 
-416 
+415 
 	gdb_ôî
 ->
 Next
 ();
 
-418 
+417 
 dñëe
  
 	gdb_ôî
 ;
 
-419  
+418  
 	gkOK
 ;
 
-422 
+421 
 	gDB
 ::
 Sètus
@@ -22103,7 +22399,7 @@ Upd©eSögÀ
 key
 ,
 
-423 
+422 
 °d
 ::
 ve˘‹
@@ -22113,7 +22409,7 @@ Fõld
 vÆues
 ) {
 
-424 
+423 
 °d
 ::
 °rög
@@ -22121,7 +22417,7 @@ vÆues
 d©a
 ;
 
-425 
+424 
 	grocksdb
 ::
 Sètus
@@ -22141,23 +22437,23 @@ key
 d©a
 );
 
-426 i‡(
+425 i‡(
 	gs
 .
 IsNŸFound
 ()) {
 
-427  
+426  
 	gkNŸFound
 ;
 
-428 } i‡(!
+427 } i‡(!
 	gs
 .
 ok
 ()) {
 
-429 
+428 
 throw
  
 	gutûs
@@ -22173,7 +22469,7 @@ s
 ToSåög
 ());
 
-431 
+430 
 	g°d
 ::
 ve˘‹
@@ -22183,7 +22479,7 @@ Fõld
 cuºít_vÆues
 ;
 
-432 
+431 
 De£rülizeRow
 (
 cuºít_vÆues
@@ -22191,7 +22487,7 @@ cuºít_vÆues
 d©a
 );
 
-433 
+432 
 as£π
 (
 cuºít_vÆues
@@ -22205,7 +22501,7 @@ size_t
 fõldcou¡_
 ));
 
-434 
+433 
 	gFõld
  &
 	g√w_fõld
@@ -22213,7 +22509,7 @@ fõldcou¡_
 vÆues
 ) {
 
-435 
+434 
 boﬁ
  
 found
@@ -22225,7 +22521,7 @@ unu£d
 Ál£
 ;
 
-436 
+435 
 	gFõld
  &
 	gcur_fõld
@@ -22233,7 +22529,7 @@ unu£d
 cuºít_vÆues
 ) {
 
-437 i‡(
+436 i‡(
 cur_fõld
 .
 «me
@@ -22241,13 +22537,13 @@ cur_fõld
 √w_fõld
 .name) {
 
-438 
+437 
 found
  = 
 åue
 ;
 
-439 
+438 
 	gcur_fõld
 .
 	gvÆue
@@ -22257,13 +22553,13 @@ found
 vÆue
 ;
 
-443 
+442 
 as£π
 (
 found
 );
 
-445 
+444 
 	grocksdb
 ::
 WrôeO±i⁄s
@@ -22271,13 +22567,13 @@ WrôeO±i⁄s
 w›t
 ;
 
-447 
+446 
 	gd©a
 .
 ˛ór
 ();
 
-448 
+447 
 SîülizeRow
 (
 cuºít_vÆues
@@ -22285,7 +22581,7 @@ cuºít_vÆues
 d©a
 );
 
-449 
+448 
 	gs
  = 
 db_
@@ -22299,13 +22595,13 @@ key
 d©a
 );
 
-450 i‡(!
+449 i‡(!
 	gs
 .
 ok
 ()) {
 
-451 
+450 
 throw
  
 	gutûs
@@ -22321,11 +22617,11 @@ s
 ToSåög
 ());
 
-453  
+452  
 	gkOK
 ;
 
-456 
+455 
 	gDB
 ::
 Sètus
@@ -22343,7 +22639,7 @@ MîgeSögÀ
 key
 ,
 
-457 
+456 
 °d
 ::
 ve˘‹
@@ -22353,7 +22649,7 @@ Fõld
 vÆues
 ) {
 
-458 
+457 
 °d
 ::
 °rög
@@ -22361,7 +22657,7 @@ vÆues
 d©a
 ;
 
-459 
+458 
 SîülizeRow
 (
 vÆues
@@ -22369,7 +22665,7 @@ vÆues
 d©a
 );
 
-460 
+459 
 	grocksdb
 ::
 WrôeO±i⁄s
@@ -22377,7 +22673,7 @@ WrôeO±i⁄s
 w›t
 ;
 
-461 
+460 
 	grocksdb
 ::
 Sètus
@@ -22395,13 +22691,13 @@ key
 d©a
 );
 
-462 i‡(!
+461 i‡(!
 	gs
 .
 ok
 ()) {
 
-463 
+462 
 throw
  
 	gutûs
@@ -22417,11 +22713,11 @@ s
 ToSåög
 ());
 
-465  
+464  
 	gkOK
 ;
 
-468 
+467 
 	gDB
 ::
 Sètus
@@ -22439,7 +22735,7 @@ In£πSögÀ
 key
 ,
 
-469 
+468 
 °d
 ::
 ve˘‹
@@ -22449,7 +22745,7 @@ Fõld
 vÆues
 ) {
 
-470 
+469 
 °d
 ::
 °rög
@@ -22457,7 +22753,7 @@ vÆues
 d©a
 ;
 
-471 
+470 
 SîülizeRow
 (
 vÆues
@@ -22465,7 +22761,7 @@ vÆues
 d©a
 );
 
-472 
+471 
 	grocksdb
 ::
 WrôeO±i⁄s
@@ -22473,7 +22769,7 @@ WrôeO±i⁄s
 w›t
 ;
 
-473 
+472 
 	grocksdb
 ::
 Sètus
@@ -22491,13 +22787,13 @@ key
 d©a
 );
 
-474 i‡(!
+473 i‡(!
 	gs
 .
 ok
 ()) {
 
-475 
+474 
 throw
  
 	gutûs
@@ -22513,11 +22809,11 @@ s
 ToSåög
 ());
 
-477  
+476  
 	gkOK
 ;
 
-480 
+479 
 	gDB
 ::
 Sètus
@@ -22535,7 +22831,7 @@ RocksdbDB
 key
 ) {
 
-481 
+480 
 rocksdb
 ::
 WrôeO±i⁄s
@@ -22543,7 +22839,7 @@ WrôeO±i⁄s
 w›t
 ;
 
-482 
+481 
 rocksdb
 ::
 Sètus
@@ -22559,13 +22855,13 @@ w›t
 key
 );
 
-483 i‡(!
+482 i‡(!
 s
 .
 	`ok
 ()) {
 
-484 
+483 
 throw
  
 utûs
@@ -22581,31 +22877,31 @@ s
 	`ToSåög
 ());
 
-486  
+485  
 kOK
 ;
 
-487 
+486 
 	}
 }
 
-489 
+488 
 DB
  *
 	$NewRocksdbDB
 () {
 
-490  
+489  
 √w
  
 RocksdbDB
 ;
 
-491 
+490 
 	}
 }
 
-493 c⁄° 
+492 c⁄° 
 boﬁ
  
 	gªgi°îed

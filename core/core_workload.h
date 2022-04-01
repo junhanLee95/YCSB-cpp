@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <string>
+#include <map>
 #include "db.h"
 #include "properties.h"
 #include "generator.h"
@@ -168,8 +169,8 @@ class CoreWorkload {
   ///
   virtual void Init(const utils::Properties &p);
 
-  virtual bool DoInsert(DB &db);
-  virtual bool DoTransaction(DB &db);
+  virtual bool DoInsert(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats);
+  virtual bool DoTransaction(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats);
 
   bool read_all_fields() const { return read_all_fields_; }
   bool write_all_fields() const { return write_all_fields_; }
@@ -199,11 +200,11 @@ class CoreWorkload {
   uint64_t NextTransactionKeyNum();
   std::string NextFieldName();
 
-  int TransactionRead(DB &db);
-  int TransactionReadModifyWrite(DB &db);
-  int TransactionScan(DB &db);
-  int TransactionUpdate(DB &db);
-  int TransactionInsert(DB &db);
+  int TransactionRead(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats);
+  int TransactionReadModifyWrite(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats);
+  int TransactionScan(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats);
+  int TransactionUpdate(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats);
+  int TransactionInsert(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats);
 
   std::string table_name_;
   int field_count_;
@@ -221,6 +222,7 @@ class CoreWorkload {
   size_t record_count_;
   int zero_padding_;
   int prefix_padding_;
+  std::map<uint64_t, uint64_t> key_stat_map_;
   std::mt19937 mt_;
 };
 
@@ -236,30 +238,37 @@ inline std::string CoreWorkload::NextFieldName() {
   return std::string(field_prefix_).append(std::to_string(field_chooser_->Next()));
 }
 
-inline bool CoreWorkload::DoInsert(DB &db) {
-  const std::string key = BuildKeyName(insert_key_sequence_->Next());
+inline bool CoreWorkload::DoInsert(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats) {
+  uint64_t next_sequence = insert_key_sequence_->Next();
+  const std::string key = BuildKeyName(next_sequence);
   std::vector<DB::Field> fields;
   BuildValues(fields);
+
+  if(print_key_stat) {
+    key_stats[next_sequence]++;
+    return 0;
+  }
+
   return db.Insert(table_name_, key, fields) == DB::kOK;
 }
 
-inline bool CoreWorkload::DoTransaction(DB &db) {
+inline bool CoreWorkload::DoTransaction(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats) {
   int status = -1;
   switch (op_chooser_.Next()) {
     case READ:
-      status = TransactionRead(db);
+      status = TransactionRead(db, print_key_stat, key_stats);
       break;
     case UPDATE:
-      status = TransactionUpdate(db);
+      status = TransactionUpdate(db, print_key_stat, key_stats);
       break;
     case INSERT:
-      status = TransactionInsert(db);
+      status = TransactionInsert(db, print_key_stat, key_stats);
       break;
     case SCAN:
-      status = TransactionScan(db);
+      status = TransactionScan(db, print_key_stat, key_stats);
       break;
     case READMODIFYWRITE:
-      status = TransactionReadModifyWrite(db);
+      status = TransactionReadModifyWrite(db, print_key_stat, key_stats);
       break;
     default:
       throw utils::Exception("Operation request is not recognized!");
@@ -268,10 +277,16 @@ inline bool CoreWorkload::DoTransaction(DB &db) {
   return (status == DB::kOK);
 }
 
-inline int CoreWorkload::TransactionRead(DB &db) {
+inline int CoreWorkload::TransactionRead(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats) {
   uint64_t key_num = NextTransactionKeyNum();
   const std::string key = BuildKeyName(key_num);
   std::vector<DB::Field> result;
+
+  if(print_key_stat) {
+    key_stats[key_num]++;
+    return 0;
+  }
+
   if (!read_all_fields()) {
     std::vector<std::string> fields;
     fields.push_back(NextFieldName());
@@ -281,10 +296,15 @@ inline int CoreWorkload::TransactionRead(DB &db) {
   }
 }
 
-inline int CoreWorkload::TransactionReadModifyWrite(DB &db) {
+inline int CoreWorkload::TransactionReadModifyWrite(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats) {
   uint64_t key_num = NextTransactionKeyNum();
   const std::string key = BuildKeyName(key_num);
   std::vector<DB::Field> result;
+
+  if(print_key_stat) {
+    key_stats[key_num]++;
+    return 0;
+  }
 
   if (!read_all_fields()) {
     std::vector<std::string> fields;
@@ -303,11 +323,17 @@ inline int CoreWorkload::TransactionReadModifyWrite(DB &db) {
   return db.Update(table_name_, key, values);
 }
 
-inline int CoreWorkload::TransactionScan(DB &db) {
+inline int CoreWorkload::TransactionScan(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats) {
   uint64_t key_num = NextTransactionKeyNum();
   const std::string key = BuildKeyName(key_num);
   int len = scan_len_chooser_->Next();
   std::vector<std::vector<DB::Field>> result;
+
+  if(print_key_stat) {
+    key_stats[key_num]++;
+    return 0;
+  }
+
   if (!read_all_fields()) {
     std::vector<std::string> fields;
     fields.push_back(NextFieldName());
@@ -317,10 +343,16 @@ inline int CoreWorkload::TransactionScan(DB &db) {
   }
 }
 
-inline int CoreWorkload::TransactionUpdate(DB &db) {
+inline int CoreWorkload::TransactionUpdate(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats) {
   uint64_t key_num = NextTransactionKeyNum();
   const std::string key = BuildKeyName(key_num);
   std::vector<DB::Field> values;
+
+  if(print_key_stat) {
+    key_stats[key_num]++;
+    return 0;
+  }
+
   if (write_all_fields()) {
     BuildValues(values);
   } else {
@@ -329,13 +361,20 @@ inline int CoreWorkload::TransactionUpdate(DB &db) {
   return db.Update(table_name_, key, values);
 }
 
-inline int CoreWorkload::TransactionInsert(DB &db) {
-  uint64_t key_num = transaction_insert_key_sequence_->Next();
+inline int CoreWorkload::TransactionInsert(DB &db, bool print_key_stat, std::map<uint64_t, uint64_t>& key_stats) {
+  //uint64_t key_num = transaction_insert_key_sequence_->Next();
+  uint64_t key_num = NextTransactionKeyNum();
   const std::string key = BuildKeyName(key_num);
   std::vector<DB::Field> values;
   BuildValues(values);
+
+  if(print_key_stat) {
+    key_stats[key_num]++;
+    return 0;
+  }
+
   int s = db.Insert(table_name_, key, values);
-  transaction_insert_key_sequence_->Acknowledge(key_num);
+  //transaction_insert_key_sequence_->Acknowledge(key_num);
   return s;
 }
 

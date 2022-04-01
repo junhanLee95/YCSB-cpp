@@ -1,0 +1,30 @@
+# Yahoo! Cloud System Benchmark
+# Workload A: Update heavy workload
+#   Application example: Session store recording recent actions
+#                        
+#   Read/update ratio: 50/50
+#   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
+#   Request distribution: zipfian
+
+recordcount=134217728 # 128M
+#recordcount=67108864 # 64M
+operationcount=134217728
+#operationcount=67108864
+workload=com.yahoo.ycsb.workloads.CoreWorkload
+
+readallfields=true
+
+readproportion=0
+updateproportion=0
+scanproportion=0
+insertproportion=1
+
+# zeropadding=20 # key is composed of 1<<64 and its len is 20. 20 + 12 = 32 which is the key size
+
+# fieldcount=1
+# fieldlength=978 # 978 + 14 = 992 byte and it makes item size 1KB
+
+printkeystat=false
+
+requestdistribution=uniform
+

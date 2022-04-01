@@ -39,8 +39,8 @@ class ZipfianCompGenerator : public Generator<uint64_t> {
   static constexpr double kZetan = 26.46902820178302;
   const uint64_t base_;
   const uint64_t num_items_;
-  static const uint64_t zipf_bit_ = 10000;
-  static const uint64_t uniform_bit_ = 1000;
+  static const uint64_t zipf_bit_ = 1<<14;
+  static const uint64_t uniform_bit_ = 1<<18;
   ZipfianGenerator generator_;
   std::mt19937_64 mt_;
   std::uniform_int_distribution<uint64_t> dist_;
