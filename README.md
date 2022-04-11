@@ -56,3 +56,19 @@ Pass additional properties:
 ./ycsb -load -db leveldb -P workloads/workloadb -P rocksdb/rocksdb.properties \
     -p threadcount=4 -p recordcount=10000000 -p leveldb.cache_size=134217728 -s
 ```
+
+## LCFDB 
+
+This is for evaluating the column family setting. 
+When you load the existing database, you should remove optionsfile properties in rocksdb.properties. 
+
+If you want to create new database with specified column family, 
+you should set the optionsfile. It becomes the base option file for new db. 
+Before creating db, please specify the column family setting at line 217 in lcfdb/rocksdb_db.cc.
+
+
+
+
+
+
+

@@ -11,11 +11,11 @@
 #include "core/db_factory.h"
 #include "core/properties.h"
 #include "core/utils.h"
-#include "/home/ceph/remixdb/ctypes.h"
-#include "/home/ceph/remixdb/lib.h"
-#include "/home/ceph/remixdb/kv.h"
-#include "/home/ceph/remixdb/sst.h"
-#include "/home/ceph/remixdb/xdb.h"
+#include "remixdb/ctypes.h"
+#include "remixdb/lib.h"
+#include "remixdb/kv.h"
+#include "remixdb/sst.h"
+#include "remixdb/xdb.h"
 #include <stdio.h>
 
 namespace {

@@ -1,29 +1,35 @@
 //
-//  remixdb_db.h
+//  rocksdb_db.h
 //  YCSB-cpp
 //
-//  Copyright (c) 2021 Junhan Lee <junahlee2020@gmail.com>.
 //  Copyright (c) 2020 Youngjae Lee <ls4154.lee@gmail.com>.
 //
-#ifndef YCSB_C_REMIXDB_DB_H_
-#define YCSB_C_REMIXDB_DB_H_
+
+#ifndef YCSB_C_ROCKSDB_DB_H_
+#define YCSB_C_ROCKSDB_DB_H_
 
 #include <string>
 #include <mutex>
 
 #include "core/db.h"
 #include "core/properties.h"
-#include "remixdb/ctypes.h"
-#include "remixdb/lib.h"
-#include "remixdb/kv.h"
-#include "remixdb/sst.h"
-#include "remixdb/xdb.h"
+
+#include <rocksdb/db.h>
+#include <rocksdb/table.h>
+#include <rocksdb/options.h>
+/*
+#include "global/global_init.h"
+#include "os/bluestore/BlueFS.h"
+#include "os/bluestore/BlueStore.h"
+#include "os/bluestore/BlueRocksEnv.h"
+*/
+
 namespace ycsbc {
 
-class RemixdbDB : public DB {
+class RocksdbDB : public DB {
  public:
-  RemixdbDB() {}
-  ~RemixdbDB() {}
+  RocksdbDB() {}
+  ~RocksdbDB() {}
 
   void Init();
 
@@ -52,11 +58,13 @@ class RemixdbDB : public DB {
   }
 
  private:
-  enum RemixFormat {
+  enum RocksFormat {
     kSingleRow,
   };
-  RemixFormat format_;
+  RocksFormat format_;
 
+  void GetOptions(const utils::Properties &props, rocksdb::Options *opt,
+                  std::vector<rocksdb::ColumnFamilyDescriptor> *cf_descs);
   static void SerializeRow(const std::vector<Field> &values, std::string &data);
   static void DeserializeRowFilter(std::vector<Field> &values, const char *p, const char *lim,
                                    const std::vector<std::string> &fields);
@@ -78,27 +86,28 @@ class RemixdbDB : public DB {
                       std::vector<Field> &values);
   Status DeleteSingle(const std::string &table, const std::string &key);
 
-  Status (RemixdbDB::*method_read_)(const std::string &, const std:: string &,
+  Status (RocksdbDB::*method_read_)(const std::string &, const std:: string &,
                                     const std::vector<std::string> *, std::vector<Field> &);
-  Status (RemixdbDB::*method_scan_)(const std::string &, const std::string &,
+  Status (RocksdbDB::*method_scan_)(const std::string &, const std::string &,
                                     int, const std::vector<std::string> *,
                                     std::vector<std::vector<Field>> &);
-  Status (RemixdbDB::*method_update_)(const std::string &, const std::string &,
+  Status (RocksdbDB::*method_update_)(const std::string &, const std::string &,
                                       std::vector<Field> &);
-  Status (RemixdbDB::*method_insert_)(const std::string &, const std::string &,
+  Status (RocksdbDB::*method_insert_)(const std::string &, const std::string &,
                                       std::vector<Field> &);
-  Status (RemixdbDB::*method_delete_)(const std::string &, const std::string &);
+  Status (RocksdbDB::*method_delete_)(const std::string &, const std::string &);
 
   int fieldcount_;
 
-  static struct xdb* db_;
-  static struct xdb_ref* ref_;
+  static rocksdb::DB *db_;
   static int ref_cnt_;
   static std::mutex mu_;
+  //static BlueFS* bluefs;
 };
 
-DB *NewRemixdbDB();
+DB *NewRocksdbDB();
 
 } // ycsbc
 
 #endif // YCSB_C_ROCKSDB_DB_H_
+

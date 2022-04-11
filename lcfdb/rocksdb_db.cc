@@ -93,6 +93,23 @@ rocksdb::DB *RocksdbDB::db_ = nullptr;
 int RocksdbDB::ref_cnt_ = 0;
 std::mutex RocksdbDB::mu_;
 //BlueFS *RocksdbDB::bluefs = nullptr;
+bool cf_enabled = true;
+std::unordered_map<std::string, void *> cf_handles;
+rocksdb::ColumnFamilyHandle *default_cf_handle;
+
+void add_column_family(const std::string& cf_name, void *handle) {
+  cf_handles.insert(std::make_pair(cf_name, handle));
+}
+
+rocksdb::ColumnFamilyHandle *get_cf_handle(const std::string& key) {
+  std::string cf_name(1, key[0]);
+
+  auto iter = cf_handles.find(cf_name);
+  if (iter == cf_handles.end())
+    return default_cf_handle;
+  else
+    return static_cast<rocksdb::ColumnFamilyHandle*>(iter->second);
+}
 
 void RocksdbDB::Init() {
 // merge operator disabled by default due to link error
@@ -190,8 +207,36 @@ void RocksdbDB::Init() {
   } else {
     s = rocksdb::DB::Open(opt, db_path, cf_descs, &cf_handles, &db_);
   }
+
   if (!s.ok()) {
     throw utils::Exception(std::string("RocksDB Open: ") + s.ToString());
+  }
+
+  if (cf_descs.size() == 1) {
+    // Please specify the column family that you want to set. 
+    std::vector<std::string> cfs = {"M","P","L"};
+
+    for (auto& p : cfs) {
+      std::cout << "Create Column Family(" << p << ")" << std::endl;
+      rocksdb::ColumnFamilyOptions cf_opt(opt);
+      rocksdb::ColumnFamilyHandle *cf;
+
+      s = db_->CreateColumnFamily(cf_opt, p, &cf);
+      if (!s.ok()) {
+        throw utils::Exception(std::string("RocksDB Open: ") + s.ToString());
+      }
+      add_column_family(p, cf);
+    }
+  } else {
+    for (auto& p : cf_handles) {
+      std::cout << "Load Column Family(" << p->GetName() << ")" << std::endl;
+      add_column_family(p->GetName(), p);
+    }
+  }
+
+  default_cf_handle = db_->DefaultColumnFamily();
+  if (!default_cf_handle) {
+    throw utils::Exception(std::string("RocksDB Open: ") + "No Defautl CF");
   }
 }
 
@@ -210,10 +255,23 @@ void RocksdbDB::GetOptions(const utils::Properties &props, rocksdb::Options *opt
   rocksdb::Env* env;
   env =  rocksdb::Env::Default();
 
+  const std::string db_path = props.GetProperty(PROP_NAME, PROP_NAME_DEFAULT);
   const std::string options_file = props.GetProperty(PROP_OPTIONS_FILE, PROP_OPTIONS_FILE_DEFAULT);
+  std::string latest_options_file; 
 
+  rocksdb::Status s = GetLatestOptionsFileName(db_path, env, &latest_options_file);
+
+  // When you do load, please specify the Options file.
   if (options_file != "") {
     rocksdb::Status s = rocksdb::LoadOptionsFromFile(options_file, env, opt, cf_descs);
+    if (!s.ok()) {
+      throw utils::Exception(std::string("RocksDB LoadOptionsFromFile: ") + s.ToString());
+    }
+  } 
+  // When you do run, it automatically find the latest option file. 
+  else if (latest_options_file != "") {
+    latest_options_file = db_path + "/" + latest_options_file;
+    rocksdb::Status s = rocksdb::LoadOptionsFromFile(latest_options_file, env, opt, cf_descs);
     if (!s.ok()) {
       throw utils::Exception(std::string("RocksDB LoadOptionsFromFile: ") + s.ToString());
     }
@@ -350,7 +408,8 @@ DB::Status RocksdbDB::ReadSingle(const std::string &table, const std::string &ke
                                  const std::vector<std::string> *fields,
                                  std::vector<Field> &result) {
   std::string data;
-  rocksdb::Status s = db_->Get(rocksdb::ReadOptions(), key, &data);
+  auto cf = get_cf_handle(key);
+  rocksdb::Status s = db_->Get(rocksdb::ReadOptions(), cf, key, &data);
   if (s.IsNotFound()) {
     return kNotFound;
   } else if (!s.ok()) {
@@ -368,7 +427,8 @@ DB::Status RocksdbDB::ReadSingle(const std::string &table, const std::string &ke
 DB::Status RocksdbDB::ScanSingle(const std::string &table, const std::string &key, int len,
                                  const std::vector<std::string> *fields,
                                  std::vector<std::vector<Field>> &result) {
-  rocksdb::Iterator *db_iter = db_->NewIterator(rocksdb::ReadOptions());
+  auto cf = get_cf_handle(key);
+  rocksdb::Iterator *db_iter = db_->NewIterator(rocksdb::ReadOptions(),cf);
   db_iter->Seek(key);
   for (int i = 0; db_iter->Valid() && i < len; i++) {
     std::string data = db_iter->value().ToString();
@@ -389,7 +449,8 @@ DB::Status RocksdbDB::ScanSingle(const std::string &table, const std::string &ke
 DB::Status RocksdbDB::UpdateSingle(const std::string &table, const std::string &key,
                                    std::vector<Field> &values) {
   std::string data;
-  rocksdb::Status s = db_->Get(rocksdb::ReadOptions(), key, &data);
+  auto cf = get_cf_handle(key);
+  rocksdb::Status s = db_->Get(rocksdb::ReadOptions(), cf, key, &data);
   if (s.IsNotFound()) {
     return kNotFound;
   } else if (!s.ok()) {
@@ -413,7 +474,7 @@ DB::Status RocksdbDB::UpdateSingle(const std::string &table, const std::string &
 
   data.clear();
   SerializeRow(current_values, data);
-  s = db_->Put(wopt, key, data);
+  s = db_->Put(wopt, cf, key, data);
   if (!s.ok()) {
     throw utils::Exception(std::string("RocksDB Put: ") + s.ToString());
   }
@@ -425,7 +486,8 @@ DB::Status RocksdbDB::MergeSingle(const std::string &table, const std::string &k
   std::string data;
   SerializeRow(values, data);
   rocksdb::WriteOptions wopt;
-  rocksdb::Status s = db_->Merge(wopt, key, data);
+  auto cf = get_cf_handle(key);
+  rocksdb::Status s = db_->Merge(wopt, cf, key, data);
   if (!s.ok()) {
     throw utils::Exception(std::string("RocksDB Merge: ") + s.ToString());
   }
@@ -437,7 +499,11 @@ DB::Status RocksdbDB::InsertSingle(const std::string &table, const std::string &
   std::string data;
   SerializeRow(values, data);
   rocksdb::WriteOptions wopt;
-  rocksdb::Status s = db_->Put(wopt, key, data);
+  rocksdb::Status s;
+
+  auto cf = get_cf_handle(key);
+  s = db_->Put(wopt, cf, key, data);
+
   if (!s.ok()) {
     throw utils::Exception(std::string("RocksDB Put: ") + s.ToString());
   }
@@ -446,7 +512,8 @@ DB::Status RocksdbDB::InsertSingle(const std::string &table, const std::string &
 
 DB::Status RocksdbDB::DeleteSingle(const std::string &table, const std::string &key) {
   rocksdb::WriteOptions wopt;
-  rocksdb::Status s = db_->Delete(wopt, key);
+  auto cf = get_cf_handle(key);
+  rocksdb::Status s = db_->Delete(wopt, cf, key);
   if (!s.ok()) {
     throw utils::Exception(std::string("RocksDB Delete: ") + s.ToString());
   }
@@ -457,6 +524,6 @@ DB *NewRocksdbDB() {
   return new RocksdbDB;
 }
 
-const bool registered = DBFactory::RegisterDB("rocksdb", NewRocksdbDB);
+const bool registered = DBFactory::RegisterDB("lcfdb", NewRocksdbDB);
 
 } // ycsbc
