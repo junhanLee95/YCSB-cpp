@@ -90,9 +90,13 @@ class RemixdbDB : public DB {
   Status (RemixdbDB::*method_delete_)(const std::string &, const std::string &);
 
   int fieldcount_;
-
   static struct xdb* db_;
+  /*
   static struct xdb_ref* ref_;
+  static int ref_cnt_;
+  static std::mutex mu_;
+  */
+  struct xdb_ref* ref_ = nullptr;
   static int ref_cnt_;
   static std::mutex mu_;
 };

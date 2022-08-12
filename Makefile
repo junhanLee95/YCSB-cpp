@@ -22,10 +22,10 @@ EXTRA_CXXFLAGS ?= -I/usr/include
 EXTRA_LDFLAGS ?= -L/usr/lib64 -ldl -lz -lbz2 -llz4  
 
 BIND_LEVELDB ?= 0
-BIND_ROCKSDB ?= 0 
+BIND_ROCKSDB ?= 1
 BIND_LMDB ?= 0
 BIND_REMIXDB ?= 1
-BIND_LCFDB ?= 1
+BIND_LCFDB ?= 0
 
 #----------------------------------------------------------
 
@@ -64,8 +64,8 @@ ifeq ($(BIND_LCFDB), 1)
 	EXTRA_CXXFLAGS += -I${BASEDIR}/rocksdb/include
 endif
 
-CXXFLAGS += -std=c++11 -Wall -pthread $(EXTRA_CXXFLAGS) -I./
-#CXXFLAGS += -std=c++17 -Wall -pthread $(EXTRA_CXXFLAGS) -I./
+#CXXFLAGS += -std=c++11 -Wall -pthread $(EXTRA_CXXFLAGS) -I./
+CXXFLAGS += -std=c++17 -Wall -pthread $(EXTRA_CXXFLAGS) -I./
 LDFLAGS += $(EXTRA_LDFLAGS) -lpthread
 SOURCES += $(wildcard core/*.cc)
 OBJECTS += $(SOURCES:.cc=.o)

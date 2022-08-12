@@ -36,7 +36,7 @@ namespace {
 namespace ycsbc {
 
 struct xdb *RemixdbDB::db_ = nullptr;
-struct xdb_ref *RemixdbDB::ref_ = nullptr;
+//struct xdb_ref *RemixdbDB::ref_ = nullptr;
 int RemixdbDB::ref_cnt_ = 0;
 std::mutex RemixdbDB::mu_;
 
@@ -106,31 +106,33 @@ void RemixdbDB::Init() {
                                             CoreWorkload::FIELD_COUNT_DEFAULT));
 
   ref_cnt_++;
-  if (db_) {
-    return;
-  }
 
-  const std::string &db_path = props.GetProperty(PROP_NAME, PROP_NAME_DEFAULT);
-  if (db_path == "") {
-    throw utils::Exception("Remixdb db path is missing");
-  }
-
-  const u64 cachesz = a2u64(props.GetProperty(PROP_CACHE_SIZE, PROP_CACHE_SIZE_DEFAULT).c_str());
-  const u64 mtsz = a2u64(props.GetProperty(PROP_MT_SIZE, PROP_MT_SIZE_DEFAULT).c_str());
-
-  db_ = remixdb_open(db_path.c_str(), cachesz, mtsz, true);
   if (!db_) {
-    throw utils::Exception(std::string("Remixdb Open Failed\n"));
+    const std::string &db_path = props.GetProperty(PROP_NAME, PROP_NAME_DEFAULT);
+    if (db_path == "") {
+      throw utils::Exception("Remixdb db path is missing");
+    }
+
+    const u64 cachesz = a2u64(props.GetProperty(PROP_CACHE_SIZE, PROP_CACHE_SIZE_DEFAULT).c_str());
+    const u64 mtsz = a2u64(props.GetProperty(PROP_MT_SIZE, PROP_MT_SIZE_DEFAULT).c_str());
+
+    db_ = remixdb_open(db_path.c_str(), cachesz, mtsz, true);
+    if (!db_) {
+      throw utils::Exception(std::string("Remixdb Open Failed\n"));
+    }
   }
+
   ref_ = remixdb_ref(db_);
+  //printf("RemixdbInit: %p %p\n", db_, ref_);
 }
 
 void RemixdbDB::Cleanup() {
   const std::lock_guard<std::mutex> lock(mu_);
+  //printf("RemixdbCleanup: %p %p %d\n", db_, ref_, ref_cnt_);
+  remixdb_unref(ref_);
   if (--ref_cnt_) {
     return;
   }
-  remixdb_unref(ref_);
   remixdb_close(db_);
 }
 
