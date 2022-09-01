@@ -1,0 +1,9 @@
+000001.359 98efb256 msstz_open time 2022-08-30 13:16:41 +0900 v 1 seq 1 cache 4096
+000001.359 98efb256 msstz_open [  0]     0
+000001.360 98efb256 xdb_wal_recover wal1 1 wal2 0 zv 1
+000001.360 98efb256 xdb_wal_recover use wal1 1
+000002.852 98efb256 xdb_recover_fd fd 5 fsize 328916992 rsize 328916992 nkeys 2000000
+000002.852 98efb256 xdb_wal_recover wal rsize 328916992 woff 328916992 mtsz 346795378 fd 5
+000002.855 ec1caddd xdb_compaction_worker_pin cpus 4 first 60 (auto)
+000004.310 98efb256 msstz_gc gc dt-ms 0 free-v 0 close 0 unlink 0
+000004.310 98efb256 msstz_destroy hv 1 comp_time 0 writes 0 reads 0

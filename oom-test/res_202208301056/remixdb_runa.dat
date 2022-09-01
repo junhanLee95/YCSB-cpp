@@ -1,0 +1,6 @@
+[DHDEBUG] Mem Size: 4096 4096
+2022-08-30 10:56:40 0 sec: 0 operations;
+2022-08-30 10:56:45 4 sec: 2000000 operations; [READ: Count=999283 Max=28251.40 Min=0.87 Avg=2.94] [UPDATE: Count=1000717 Max=28273.76 Min=1.80 Avg=9.25]
+Run runtime(sec): 4.75696
+Run operations(ops): 2000000
+Run throughput(ops/sec): 420436

@@ -1,0 +1,18 @@
+[DHDEBUG] Mem Size: 4096 4096
+2022-08-30 14:01:21 0 sec: 0 operations;
+2022-08-30 14:01:31 10 sec: 0 operations;
+2022-08-30 14:01:41 20 sec: 0 operations;
+2022-08-30 14:01:51 30 sec: 1986009 operations; [INSERT: Count=99378 Max=3339.09 Min=2.01 Avg=8.63] [SCAN: Count=1886631 Max=5842.54 Min=2.46 Avg=114.94]
+2022-08-30 14:02:01 40 sec: 4688275 operations; [INSERT: Count=234449 Max=4543.89 Min=1.86 Avg=8.42] [SCAN: Count=4453826 Max=5842.54 Min=2.46 Avg=103.57]
+2022-08-30 14:02:11 50 sec: 7446922 operations; [INSERT: Count=372666 Max=4543.89 Min=1.86 Avg=8.16] [SCAN: Count=7074256 Max=7090.55 Min=2.46 Avg=99.71]
+2022-08-30 14:02:21 60 sec: 10204051 operations; [INSERT: Count=510968 Max=4543.89 Min=1.86 Avg=8.04] [SCAN: Count=9693083 Max=7090.55 Min=2.46 Avg=97.96]
+2022-08-30 14:02:31 70 sec: 12964859 operations; [INSERT: Count=649221 Max=4543.89 Min=1.86 Avg=7.93] [SCAN: Count=12315638 Max=7090.55 Min=2.44 Avg=96.92]
+2022-08-30 14:02:41 80 sec: 15726132 operations; [INSERT: Count=786920 Max=4543.89 Min=1.86 Avg=7.89] [SCAN: Count=14939212 Max=7090.55 Min=2.44 Avg=96.24]
+2022-08-30 14:02:51 90 sec: 18498353 operations; [INSERT: Count=925377 Max=4543.89 Min=1.86 Avg=7.85] [SCAN: Count=17572976 Max=7090.55 Min=2.44 Avg=95.69]
+2022-08-30 14:03:01 100 sec: 19883846 operations; [INSERT: Count=994856 Max=4543.89 Min=1.48 Avg=7.79] [SCAN: Count=18888990 Max=7090.55 Min=2.10 Avg=95.38]
+2022-08-30 14:03:11 110 sec: 19981746 operations; [INSERT: Count=999683 Max=4543.89 Min=1.48 Avg=7.76] [SCAN: Count=18982063 Max=7090.55 Min=2.10 Avg=95.39]
+2022-08-30 14:03:21 120 sec: 20000000 operations; [INSERT: Count=1000624 Max=4543.89 Min=1.48 Avg=7.76] [SCAN: Count=18999376 Max=7090.55 Min=2.10 Avg=95.39]
+2022-08-30 14:03:22 121 sec: 20000000 operations; [INSERT: Count=1000624 Max=4543.89 Min=1.48 Avg=7.76] [SCAN: Count=18999376 Max=7090.55 Min=2.10 Avg=95.39]
+Run runtime(sec): 122.169
+Run operations(ops): 20000000
+Run throughput(ops/sec): 163708

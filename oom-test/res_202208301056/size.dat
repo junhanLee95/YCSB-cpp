@@ -1,0 +1,4 @@
+loadputonly  Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/nvme0n1   ext4  470G  386M  446G   1% /mnt/remixdb_test
+runa  Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/nvme0n1   ext4  470G  543M  445G   1% /mnt/remixdb_test

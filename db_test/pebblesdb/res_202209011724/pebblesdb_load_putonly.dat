@@ -1,0 +1,13 @@
+2022-09-01 17:24:25 0 sec: 0 operations;
+2022-09-01 17:24:35 10 sec: 463740 operations; [INSERT: Count=463740 Max=53512.26 Min=11.24 Avg=565.92]
+2022-09-01 17:24:45 20 sec: 908394 operations; [INSERT: Count=908394 Max=53512.26 Min=9.67 Avg=579.56]
+2022-09-01 17:24:47 22 sec: 1000000 operations; [INSERT: Count=1000000 Max=53512.26 Min=9.67 Avg=575.75]
+Load runtime(sec): 22.4238
+Load operations(ops): 1000000
+Load throughput(ops/sec): 44595.5
+2022-09-01 17:26:31 0 sec: 0 operations;
+2022-09-01 17:26:41 10 sec: 491492 operations; [INSERT: Count=491492 Max=34758.10 Min=6.93 Avg=532.66]
+2022-09-01 17:26:51 19 sec: 1000000 operations; [INSERT: Count=1000000 Max=34758.10 Min=6.93 Avg=500.70]
+Load runtime(sec): 19.8139
+Load operations(ops): 1000000
+Load throughput(ops/sec): 50469.6

@@ -20,3 +20,6 @@ readmodifywriteproportion=0.5
 
 requestdistribution=zipfian
 
+fieldcount=1
+fieldlength=120 # 978 + 14 = 992 byte and it makes item size 1KB
+

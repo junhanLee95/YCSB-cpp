@@ -1,0 +1,4 @@
+load_putonly  Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/nvme0n1   ext4  470G  3.4G  443G   1% /mnt/pebblesdb_test
+run_a  Filesystem     Type  Size  Used Avail Use% Mounted on
+/dev/nvme0n1   ext4  470G  3.9G  442G   1% /mnt/pebblesdb_test

@@ -9,22 +9,25 @@
 
 #---------------------build config-------------------------
 
-BASEDIR = /home/ceph/dohyun
+BASEDIR = /home/ceph
 
-DEBUG_BUILD ?= 0
+DEBUG_BUILD ?= 1
 #EXTRA_CXXFLAGS ?= -I/home/ceph/rocksdb/include 
 #EXTRA_CXXFLAGS ?= -I/home/ceph/rocksdb/include -I/home/ceph/bluefs_bench/ceph/src/ -I/home/ceph/bluefs_bench/ceph/build/include -I/home/ceph/bluefs_bench/ceph/build/boost/include
-EXTRA_CXXFLAGS ?= -I/usr/include
+#EXTRA_CXXFLAGS ?= -I/home/ceph/remixdb/include
+EXTRA_CXXFLAGS ?= -I/home/ceph/pebblesdb/src/pebblesdb/include
 #EXTRA_LDFLAGS ?= -L/home/ceph/rocksdb -ldl -lz -lsnappy -lbz2 -llz4
 #EXTRA_LDFLAGS ?= -L/home/ceph/rocksdb -L/usr/local/lib -L/home/ceph/bluefs_bench/ceph/build/lib/ -L/home/ceph/bluefs_bench/ceph/build/boost/lib/ -L/usr/lib64/ -L/home/ceph/bluefs_bench/ceph/build/src/os/CMakeFiles/os.dir/bluestore -ldl -lz -lsnappy -lbz2 -llz4
 #EXTRA_LDFLAGS ?= -L/lib #-L/home/ceph/remixdb -ldl -lz -lbz2 -llz4
 #EXTRA_LDFLAGS ?= -L/lib -L/usr/lib64 -ldl -lz -lbz2 -llz4  
-EXTRA_LDFLAGS ?= -L/usr/lib64 -ldl -lz -lbz2 -llz4  
+#EXTRA_LDFLAGS ?= -L/home/ceph/remixdb -ldl -lz -lbz2 -llz4  
+EXTRA_LDFLAGS ?= -L/home/seungho/pebblesdb -ldl -lz -lbz2 -llz4
 
 BIND_LEVELDB ?= 0
-BIND_ROCKSDB ?= 1
+BIND_ROCKSDB ?= 0
 BIND_LMDB ?= 0
 BIND_REMIXDB ?= 1
+BIND_PEBBLESDB ?= 1
 BIND_LCFDB ?= 0
 
 #----------------------------------------------------------
@@ -58,6 +61,12 @@ ifeq ($(BIND_REMIXDB), 1)
 	EXTRA_CXXFLAGS += -I${BASEDIR}/remixdb/include
 endif
 
+ifeq ($(BIND_PEBBLESDB), 1)
+	LDFLAGS += -lpebblesdb
+	SOURCES += $(wildcard pebblesdb/*.cc)
+	EXTRA_CXXFLAGS += -I${BASEDIR}/pebblesdb/src/include
+endif
+	
 ifeq ($(BIND_LCFDB), 1)
 	LDFLAGS += -lrocksdb
 	SOURCES += $(wildcard lcfdb/*.cc)
@@ -70,7 +79,7 @@ LDFLAGS += $(EXTRA_LDFLAGS) -lpthread
 SOURCES += $(wildcard core/*.cc)
 OBJECTS += $(SOURCES:.cc=.o)
 DEPS += $(SOURCES:.cc=.d)
-EXEC = ycsb_all
+EXEC = ycsbpebbles
 
 all: $(EXEC)
 

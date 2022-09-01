@@ -116,6 +116,8 @@ void RemixdbDB::Init() {
     const u64 cachesz = a2u64(props.GetProperty(PROP_CACHE_SIZE, PROP_CACHE_SIZE_DEFAULT).c_str());
     const u64 mtsz = a2u64(props.GetProperty(PROP_MT_SIZE, PROP_MT_SIZE_DEFAULT).c_str());
 
+    printf("[DHDEBUG] Mem Size: %ld %ld\n", cachesz, mtsz);
+
     db_ = remixdb_open(db_path.c_str(), cachesz, mtsz, true);
     if (!db_) {
       throw utils::Exception(std::string("Remixdb Open Failed\n"));
@@ -200,12 +202,18 @@ DB::Status RemixdbDB::ReadSingle(const std::string &table, const std::string &ke
                                  const std::vector<std::string> *fields,
                                  std::vector<Field> &result) {
   bool r;
-  void* vbuf_out = malloc(sizeof(1024));
+  //void* vbuf_out = malloc(1024*2);
+  char vbuf_out[1024*2];
   u32 vlen_out;
+
+  //std::cout << key << endl;
   r = remixdb_get(ref_, (void*)key.c_str(), key.size(), vbuf_out, &vlen_out);
+  //std::cout << key << endl;
   if (!r) {
     return kNotFound;
+    //return kOK;
   }
+
   std::string data(static_cast<char*>(vbuf_out), static_cast<const size_t>(vlen_out));
 
   if (fields != nullptr) {
@@ -214,22 +222,22 @@ DB::Status RemixdbDB::ReadSingle(const std::string &table, const std::string &ke
     DeserializeRow(result, data);
     assert(result.size() == static_cast<size_t>(fieldcount_));
   }
+
   return kOK;
 }
 
 DB::Status RemixdbDB::ScanSingle(const std::string &table, const std::string &key, int len,
                                  const std::vector<std::string> *fields,
                                  std::vector<std::vector<Field>> &result) {
+  char kbuf_out[1024];
+  char vbuf_out[1024];
+  u32 klen_out;
+  u32 vlen_out;
   struct xdb_iter* const db_iter = remixdb_iter_create(ref_);
 
   remixdb_iter_seek(db_iter, (void*)key.c_str(), key.size());
 
   for (int i = 0; remixdb_iter_valid(db_iter) && i < len; i++) {
-    void* kbuf_out = malloc(sizeof(1024));
-    void* vbuf_out = malloc(sizeof(1024));
-    u32 klen_out;
-    u32 vlen_out;
-
     remixdb_iter_peek(db_iter, kbuf_out, &klen_out, vbuf_out, &vlen_out); // Get KV
     std::string data(static_cast<char*>(vbuf_out), static_cast<const size_t>(vlen_out));
 
@@ -251,7 +259,8 @@ DB::Status RemixdbDB::ScanSingle(const std::string &table, const std::string &ke
 DB::Status RemixdbDB::UpdateSingle(const std::string &table, const std::string &key,
                                    std::vector<Field> &values) {
   bool r;
-  void* out = malloc(sizeof(1024));
+  //void* out = malloc(1024*2);
+  char out[1024*2];
   u32 vlen_out = 0;
   r = remixdb_get(ref_, (void*)key.c_str(), key.size(), out, &vlen_out );
   if (!r) {
@@ -280,6 +289,7 @@ DB::Status RemixdbDB::UpdateSingle(const std::string &table, const std::string &
   if (!r) {
     throw utils::Exception(std::string("Remixdb Put: ")+ key);
   }
+
   return kOK;
 }
 
@@ -293,6 +303,7 @@ DB::Status RemixdbDB::InsertSingle(const std::string &table, const std::string &
                                    std::vector<Field> &values) {
   std::string data;
   SerializeRow(values, data);
+  //std::cout << key << endl;
   remixdb_put(ref_, (void*)key.c_str(), key.size(), (void*)data.c_str(), data.size());
   return kOK;
 }

@@ -1,0 +1,9 @@
+2022-08-29 17:13:35 0 sec: 0 operations;
+2022-08-29 17:13:45 10 sec: 455075 operations; [READ: Count=227379 Max=26061.10 Min=1.34 Avg=517.84] [UPDATE: Count=227696 Max=24579.33 Min=5.76 Avg=557.07]
+2022-08-29 17:13:55 20 sec: 4998805 operations; [READ: Count=2499324 Max=26061.10 Min=0.92 Avg=86.79] [UPDATE: Count=2499481 Max=24579.33 Min=5.76 Avg=117.55]
+2022-08-29 17:14:05 30 sec: 11518145 operations; [READ: Count=5759949 Max=26061.10 Min=0.92 Avg=50.86] [UPDATE: Count=5758196 Max=24579.33 Min=5.76 Avg=83.00]
+2022-08-29 17:14:15 40 sec: 18409271 operations; [READ: Count=9205544 Max=26061.10 Min=0.88 Avg=40.28] [UPDATE: Count=9203727 Max=24579.33 Min=5.76 Avg=71.75]
+2022-08-29 17:14:18 43 sec: 20000000 operations; [READ: Count=10000976 Max=26061.10 Min=0.79 Avg=39.09] [UPDATE: Count=9999024 Max=24579.33 Min=3.62 Avg=70.34]
+Run runtime(sec): 43.2464
+Run operations(ops): 20000000
+Run throughput(ops/sec): 462466

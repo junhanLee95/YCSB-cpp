@@ -1,0 +1,18 @@
+[SIGNAL] Segmentation faultBacktrace (14):
+/lib/libremixdb.so(+0x3135f)[0x7f0ccba2935f]
+/lib64/libpthread.so.0(+0xf630)[0x7f0ccafb2630]
+/lib64/libstdc++.so.6(_ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS_+0xc0)[0x7f0ccad107a0]
+./ycsbpebbles[0x472fc3]
+./ycsbpebbles[0x46fc38]
+./ycsbpebbles[0x46b406]
+./ycsbpebbles[0x4688a5]
+./ycsbpebbles[0x45be5a]
+./ycsbpebbles[0x431583]
+./ycsbpebbles[0x43374e]
+./ycsbpebbles[0x43e71a]
+./ycsbpebbles[0x48954b]
+/lib64/libpthread.so.0(+0x7ea5)[0x7f0ccafaaea5]
+/lib64/libc.so.6(clone+0x6d)[0x7f0cca4b396d]
+[Waiting GDB] 2022-09-01 15:47:31 +0900 main(!!) @ node3
+    Attach me: sudo -Hi gdb -p 1092556
+

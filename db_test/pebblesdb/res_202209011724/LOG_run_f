@@ -1,0 +1,11 @@
+2022/09/01-17:25:51.272031 7f1f238b4700 Recovering log #35
+2022/09/01-17:25:51.284983 7f1f238b4700 Delete type=3 #33
+2022/09/01-17:25:51.285050 7f1f238b4700 Delete type=0 #35
+2022/09/01-17:26:01.524885 7f1f1affd700 Level-0 table #39: 51153021 bytes OK
+2022/09/01-17:26:01.532629 7f1f1affd700 Delete type=0 #37
+2022/09/01-17:26:01.555868 7f1f1a7fc700 Compacting 2@0 + 0@1 files for guards in a level
+2022/09/01-17:26:02.595887 7f1f1a7fc700 Generated table #40: 202159 keys, 33017729 bytes
+2022/09/01-17:26:02.595917 7f1f1a7fc700 Compacted 2@0 + 0@1 files => 33017729 bytes
+2022/09/01-17:26:02.600847 7f1f1a7fc700 compacted to: files[ 0 2 0 0 6 0 0 ]
+2022/09/01-17:26:05.292999 7f1f1affd700 cleaning up CompactMemTableThread
+2022/09/01-17:26:05.293065 7f1f1a7fc700 cleaning up CompactLevelThread

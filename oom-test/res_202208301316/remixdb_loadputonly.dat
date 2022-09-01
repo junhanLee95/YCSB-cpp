@@ -1,0 +1,6 @@
+[DHDEBUG] Mem Size: 4096 4096
+2022-08-30 13:16:35 0 sec: 0 operations;
+2022-08-30 13:16:40 4 sec: 2000000 operations; [INSERT: Count=2000000 Max=30660.62 Min=1.24 Avg=12.44]
+Load runtime(sec): 4.90267
+Load operations(ops): 2000000
+Load throughput(ops/sec): 407941
