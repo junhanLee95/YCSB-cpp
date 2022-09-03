@@ -1,9 +1,0 @@
-000001.306 31aac869 msstz_open time 2022-08-30 13:57:20 +0900 v 1 seq 1 cache 4096
-000001.306 31aac869 msstz_open [  0]     0
-000001.307 31aac869 xdb_wal_recover wal1 1 wal2 0 zv 1
-000001.307 31aac869 xdb_wal_recover use wal1 1
-000021.697 31aac869 xdb_recover_fd fd 5 fsize 3289133056 rsize 3289133056 nkeys 20000000
-000021.697 31aac869 xdb_wal_recover wal rsize 3289133056 woff 3289133056 mtsz 3467953649 fd 5
-000021.699 96a35290 xdb_compaction_worker_pin cpus 4 first 60 (auto)
-000027.682 31aac869 msstz_gc gc dt-ms 0 free-v 0 close 0 unlink 0
-000027.682 31aac869 msstz_destroy hv 1 comp_time 0 writes 0 reads 0

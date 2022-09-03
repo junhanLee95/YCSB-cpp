@@ -1,6 +1,0 @@
-2022-09-01 17:25:51 0 sec: 0 operations;
-2022-09-01 17:26:01 10 sec: 1036722 operations; [READ: Count=691576 Max=11211.92 Min=2.81 Avg=199.35] [UPDATE: Count=345146 Max=14775.13 Min=9.56 Avg=362.70]
-2022-09-01 17:26:05 14 sec: 1499166 operations; [READ: Count=1000000 Max=54282.00 Min=2.81 Avg=189.51] [UPDATE: Count=499166 Max=54708.80 Min=9.56 Avg=346.34]
-Run runtime(sec): 14.0385
-Run operations(ops): 999986
-Run throughput(ops/sec): 71231.5

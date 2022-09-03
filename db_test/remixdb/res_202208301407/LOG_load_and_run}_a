@@ -1,8 +1,0 @@
-000001.371 8517beb7 msstz_open time 2022-08-30 14:07:30 +0900 v 1 seq 1 cache 4096
-000001.371 8517beb7 msstz_open [  0]     0
-000001.372 8517beb7 xdb_wal_recover wal1 0 wal2 0 zv 1
-000001.372 8517beb7 xdb_wal_recover use wal1 0
-000001.372 8517beb7 xdb_wal_recover wal empty v 1 mtsz 0 fd 5
-000001.377 944ef97f xdb_compaction_worker_pin cpus 4 first 60 (auto)
-000037.764 ca012bcf msstz_gc gc dt-ms 0 free-v 0 close 0 unlink 0
-000037.764 ca012bcf msstz_destroy hv 1 comp_time 0 writes 0 reads 0
