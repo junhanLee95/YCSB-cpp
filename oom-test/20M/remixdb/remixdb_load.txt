@@ -1,8 +1,0 @@
-2022-08-29 17:17:14 0 sec: 0 operations;
-2022-08-29 17:17:24 10 sec: 8294655 operations; [INSERT: Count=8294655 Max=47115.29 Min=1.87 Avg=20.17]
-2022-08-29 17:17:34 20 sec: 16331031 operations; [INSERT: Count=16331031 Max=47115.29 Min=1.87 Avg=21.15]
-2022-08-29 17:17:44 30 sec: 20000000 operations; [INSERT: Count=20000000 Max=47115.29 Min=1.61 Avg=20.78]
-2022-08-29 17:17:50 36 sec: 20000000 operations; [INSERT: Count=20000000 Max=47115.29 Min=1.61 Avg=20.78]
-Load runtime(sec): 36.5702
-Load operations(ops): 20000000
-Load throughput(ops/sec): 546893

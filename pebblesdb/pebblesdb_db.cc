@@ -128,7 +128,7 @@ void PebblesdbDB::Init() {
   opts.block_cache = NewLRUCache(cache_size);
   //opts.filter_policy = leveldb::NewBloomFilterPolicy(10);
 
-  leveldb::Status s
+  leveldb::Status s;
   if (props.GetProperty(PROP_DESTROY, PROP_DESTROY_DEFAULT) == "true") {
     s = leveldb::DestroyDB(db_path, opts);
     if (!s.ok()) {
