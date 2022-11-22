@@ -9,3 +9,4 @@ compile_commands.json
 .clangd/
 .cache/
 histogram_test
+.gitmessage.txt

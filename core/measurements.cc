@@ -27,7 +27,7 @@ void Measurements::Report(Operation op, uint64_t latency) {
   uint64_t prev_max = latency_max_[op].load(std::memory_order_relaxed);
   while (prev_max < latency
          && !latency_max_[op].compare_exchange_weak(prev_max, latency, std::memory_order_relaxed));
-  histogram_[op].Add(1, latency);
+  histogram_[op].Add(latency);
 }
 
 std::string Measurements::GetStatusMsg() {
@@ -53,7 +53,7 @@ std::string Measurements::GetStatusMsg() {
                << " P99=" << histogram_[op].Percentile(99.0)
                << " P99.9=" << histogram_[op].Percentile(99.9)
                << " P99.99=" << histogram_[op].Percentile(99.99)
-               "]";
+               << "]";
     total_cnt += cnt;
   }
   return std::to_string(total_cnt) + msg_stream.str();
