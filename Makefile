@@ -26,8 +26,8 @@ EXTRA_LDFLAGS ?= -L/home/seungho/pebblesdb -ldl -lz -lbz2 -llz4
 BIND_LEVELDB ?= 0
 BIND_ROCKSDB ?= 0
 BIND_LMDB ?= 0
-BIND_REMIXDB ?= 1
-BIND_PEBBLESDB ?= 1
+BIND_REMIXDB ?= 0
+BIND_PEBBLESDB ?= 0
 BIND_LCFDB ?= 0
 
 #----------------------------------------------------------
@@ -81,6 +81,7 @@ OBJECTS += $(SOURCES:.cc=.o)
 DEPS += $(SOURCES:.cc=.d)
 EXEC = ycsbpebbles
 
+
 all: $(EXEC)
 
 $(EXEC): $(OBJECTS)
@@ -101,5 +102,10 @@ endif
 clean:
 	find . -name "*.[od]" -delete
 	$(RM) $(EXEC)
+
+histogram_test:  core/test_histogram.cc core/histogram.cc
+	@$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
+	@echo "  LD      " $@
+
 
 .PHONY: clean

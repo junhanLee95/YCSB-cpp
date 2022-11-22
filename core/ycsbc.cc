@@ -119,6 +119,7 @@ int main(const int argc, const char *argv[]) {
     std::cout << "Load runtime(sec): " << runtime << std::endl;
     std::cout << "Load operations(ops): " << sum << std::endl;
     std::cout << "Load throughput(ops/sec): " << sum / runtime << std::endl;
+    std::cout << measurements.ToString() << std::endl;
   }
 
   measurements.Reset();
@@ -162,6 +163,7 @@ int main(const int argc, const char *argv[]) {
     std::cout << "Run runtime(sec): " << runtime << std::endl;
     std::cout << "Run operations(ops): " << sum << std::endl;
     std::cout << "Run throughput(ops/sec): " << sum / runtime << std::endl;
+    std::cout << measurements.ToString() << std::endl;
   }
 
   for (int i = 0; i < num_threads; i++) {

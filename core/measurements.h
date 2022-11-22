@@ -9,6 +9,7 @@
 #define YCSB_C_MEASUREMENTS_H_
 
 #include "core_workload.h"
+#include "histogram.h"
 
 #include <atomic>
 
@@ -28,12 +29,14 @@ class Measurements {
         : 0.0;
   }
   std::string GetStatusMsg();
+  std::string ToString();
   void Reset();
  private:
   std::atomic<uint> count_[MAXOPTYPE];
   std::atomic<uint64_t> latency_sum_[MAXOPTYPE];
   std::atomic<uint64_t> latency_min_[MAXOPTYPE];
   std::atomic<uint64_t> latency_max_[MAXOPTYPE];
+  HistogramImpl histogram_[MAXOPTYPE];
 };
 
 } // ycsbc

@@ -27,6 +27,7 @@ void Measurements::Report(Operation op, uint64_t latency) {
   uint64_t prev_max = latency_max_[op].load(std::memory_order_relaxed);
   while (prev_max < latency
          && !latency_max_[op].compare_exchange_weak(prev_max, latency, std::memory_order_relaxed));
+  histogram_[op].Add(1, latency);
 }
 
 std::string Measurements::GetStatusMsg() {
@@ -47,17 +48,42 @@ std::string Measurements::GetStatusMsg() {
                << ((cnt > 0)
                    ? static_cast<double>(latency_sum_[op].load(std::memory_order_relaxed)) / cnt
                    : 0) / 1000.0
-               << "]";
+               << " P50=" << histogram_[op].Percentile(50.0)
+               << " P90=" << histogram_[op].Percentile(90.0)
+               << " P99=" << histogram_[op].Percentile(99.0)
+               << " P99.9=" << histogram_[op].Percentile(99.9)
+               << " P99.99=" << histogram_[op].Percentile(99.99)
+               "]";
     total_cnt += cnt;
   }
   return std::to_string(total_cnt) + msg_stream.str();
 }
 
+
+std::string Measurements::ToString(void) {
+  std::ostringstream msg_stream;
+  for (int i = 0; i < MAXOPTYPE; i++) {
+    Operation op = static_cast<Operation>(i);
+    uint64_t cnt = GetCount(op);
+    if (cnt == 0)
+      continue;
+    msg_stream << " [" << kOperationString[op] << ":"
+               << histogram_[op].ToString();
+               "]";
+  }
+
+  return msg_stream.str();
+}
 void Measurements::Reset() {
   std::fill(std::begin(count_), std::end(count_), 0);
   std::fill(std::begin(latency_sum_), std::end(latency_sum_), 0);
   std::fill(std::begin(latency_min_), std::end(latency_min_), std::numeric_limits<uint64_t>::max());
   std::fill(std::begin(latency_max_), std::end(latency_max_), 0);
+
+  for(int i=0; i<MAXOPTYPE; i++) {
+    histogram_[i].Clear();
+    assert(histogram_[i].Empty());
+  }
 }
 
 } // ycsbc
