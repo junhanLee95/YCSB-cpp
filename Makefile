@@ -103,7 +103,7 @@ clean:
 	find . -name "*.[od]" -delete
 	$(RM) $(EXEC)
 
-histogram_test:  core/test_histogram.cc core/histogram.cc
+histogram_test:  test/test_histogram.cc core/histogram.cc
 	@$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
 	@echo "  LD      " $@
 
