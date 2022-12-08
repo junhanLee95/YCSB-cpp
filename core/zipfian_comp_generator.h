@@ -23,11 +23,11 @@ namespace ycsbc {
 class ZipfianCompGenerator : public Generator<uint64_t> {
  public:
   ZipfianCompGenerator(uint64_t min, uint64_t max, double zipfian_const) :
-      base_(min), num_items_(max - min + 1), generator_(0, 10000000000LL, zipfian_const), dist_(0, uniform_bit_) { }
+      base_(min), num_items_(max - min + 1), generator_(min, max, zipfian_const), dist_(0, uniform_bit_) { }
 
   ZipfianCompGenerator(uint64_t min, uint64_t max) :
       base_(min), num_items_(max - min + 1),
-      generator_(0, 10000000000LL, ZipfianGenerator::kZipfianConst, kZetan), dist_(0, uniform_bit_) { }
+      generator_(min, max, ZipfianGenerator::kZipfianConst, kZetan), dist_(0, uniform_bit_) { }
 
   ZipfianCompGenerator(uint64_t num_items) :
       ZipfianCompGenerator(0, num_items - 1) { }
