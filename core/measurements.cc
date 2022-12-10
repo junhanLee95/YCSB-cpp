@@ -68,7 +68,7 @@ std::string Measurements::ToString(void) {
     if (cnt == 0)
       continue;
     msg_stream << " [" << kOperationString[op] << ":"
-               << histogram_[op].ToString();
+               << histogram_[op].ToString() <<
                "]";
   }
 

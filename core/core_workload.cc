@@ -94,6 +94,8 @@ const string CoreWorkload::INSERT_START_DEFAULT = "0";
 
 const string CoreWorkload::RECORD_COUNT_PROPERTY = "recordcount";
 const string CoreWorkload::OPERATION_COUNT_PROPERTY = "operationcount";
+const string CoreWorkload::KEYRANGE_COUNT_PROPERTY = "keyrangecount";
+const string CoreWorkload::KEYRANGE_COUNT_DEFAULT = "4";
 
 const std::string CoreWorkload::FIELD_NAME_PREFIX = "fieldnameprefix";
 const std::string CoreWorkload::FIELD_NAME_PREFIX_DEFAULT = "field";
@@ -177,8 +179,10 @@ void CoreWorkload::Init(const utils::Properties &p) {
     // Zipf-Composite distribution derived from EvenDB(Eurosys'20).
     // Zipf(14byte) + Uniform(66byte)
     int op_count = std::stoi(p.GetProperty(OPERATION_COUNT_PROPERTY));
+    int keyrange_num = std::stoi(p.GetProperty(KEYRANGE_COUNT_PROPERTY, \
+                                               KEYRANGE_COUNT_DEFAULT));
     int new_keys = (int)(op_count * insert_proportion * 2); // a fudge factor
-    key_chooser_ = new ZipfianCompGenerator(record_count_ + new_keys);
+    key_chooser_ = new ZipfianCompGenerator(record_count_ + new_keys, keyrange_num);
   } else if (request_dist == "latest") { // NOTUSED
     key_chooser_ = new SkewedLatestGenerator(*transaction_insert_key_sequence_);
   } else {

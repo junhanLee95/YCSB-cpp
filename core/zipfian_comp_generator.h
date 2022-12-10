@@ -14,6 +14,7 @@
 #include <atomic>
 #include <random>
 #include <cstdint>
+#include <iostream>
 #include "utils.h"
 #include "zipfian_generator.h"
 #include "counter_generator.h"
@@ -22,15 +23,16 @@ namespace ycsbc {
 
 class ZipfianCompGenerator : public Generator<uint64_t> {
  public:
-  ZipfianCompGenerator(uint64_t min, uint64_t max, double zipfian_const) :
-      base_(min), num_items_(max - min + 1), generator_(min, max, zipfian_const), dist_(0, uniform_bit_) { }
+  ZipfianCompGenerator(uint64_t min, uint64_t max, double zipfian_const, uint64_t zipf_bit) :
+      base_(min), num_items_(max - min + 1), zipf_bit_(zipf_bit), generator_(0, zipf_bit_, zipfian_const), uniform_bit_((max - min + 1)/zipf_bit_), dist_(0, uniform_bit_-1){ }
 
-  ZipfianCompGenerator(uint64_t min, uint64_t max) :
-      base_(min), num_items_(max - min + 1),
-      generator_(min, max, ZipfianGenerator::kZipfianConst, kZetan), dist_(0, uniform_bit_) { }
+  ZipfianCompGenerator(uint64_t min, uint64_t max, uint64_t zipf_bit) :
+      base_(min), num_items_(max - min + 1), zipf_bit_(zipf_bit), 
+      generator_(0, zipf_bit_, ZipfianGenerator::kZipfianConst), uniform_bit_((max - min + 1)/zipf_bit_), dist_(0, uniform_bit_-1) {
+  }
 
-  ZipfianCompGenerator(uint64_t num_items) :
-      ZipfianCompGenerator(0, num_items - 1) { }
+  ZipfianCompGenerator(uint64_t num_items, uint64_t zipf_bit) :
+      ZipfianCompGenerator(0, num_items - 1, zipf_bit) { }
 
   uint64_t Next();
   uint64_t Last();
@@ -39,10 +41,10 @@ class ZipfianCompGenerator : public Generator<uint64_t> {
   static constexpr double kZetan = 26.46902820178302;
   const uint64_t base_;
   const uint64_t num_items_;
-  static const uint64_t zipf_bit_ = 1<<14;
-  static const uint64_t uniform_bit_ = 1<<18;
+  const uint64_t zipf_bit_;
   ZipfianGenerator generator_;
   std::mt19937_64 mt_;
+  const uint64_t uniform_bit_;
   std::uniform_int_distribution<uint64_t> dist_;
   uint64_t last_int_;
 

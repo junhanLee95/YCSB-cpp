@@ -156,6 +156,8 @@ class CoreWorkload {
 
   static const std::string RECORD_COUNT_PROPERTY;
   static const std::string OPERATION_COUNT_PROPERTY;
+  static const std::string KEYRANGE_COUNT_PROPERTY; // for zipfian composite
+  static const std::string KEYRANGE_COUNT_DEFAULT; // for zipfian composite
 
   ///
   /// Field name prefix.
