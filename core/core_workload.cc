@@ -178,11 +178,11 @@ void CoreWorkload::Init(const utils::Properties &p) {
   } else if (request_dist == "zipfiancomp") {
     // Zipf-Composite distribution derived from EvenDB(Eurosys'20).
     // Zipf(14byte) + Uniform(66byte)
-    int op_count = std::stoi(p.GetProperty(OPERATION_COUNT_PROPERTY));
+    //int op_count = std::stoi(p.GetProperty(OPERATION_COUNT_PROPERTY));
     int keyrange_num = std::stoi(p.GetProperty(KEYRANGE_COUNT_PROPERTY, \
                                                KEYRANGE_COUNT_DEFAULT));
-    int new_keys = (int)(op_count * insert_proportion * 2); // a fudge factor
-    key_chooser_ = new ZipfianCompGenerator(record_count_ + new_keys, keyrange_num);
+    //int new_keys = (int)(op_count * insert_proportion * 2); // a fudge factor
+    key_chooser_ = new ZipfianCompGenerator(record_count_ /*+ new_keys*/, keyrange_num);
   } else if (request_dist == "latest") { // NOTUSED
     key_chooser_ = new SkewedLatestGenerator(*transaction_insert_key_sequence_);
   } else {
