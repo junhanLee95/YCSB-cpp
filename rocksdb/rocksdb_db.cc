@@ -18,6 +18,7 @@
 #include <rocksdb/status.h>
 #include <rocksdb/utilities/options_util.h>
 #include <rocksdb/write_batch.h>
+#include <rocksdb/statistics.h>
 #include <iostream>
 /*
 #include "global/global_init.h"
@@ -83,6 +84,9 @@ namespace {
   const std::string PROP_FS_URI = "rocksdb.fs_uri";
   const std::string PROP_FS_URI_DEFAULT = "";
 
+  const std::string PROP_STATISTICS = "rocksdb.statistics";
+  const std::string PROP_STATISTICS_DEFAULT = "";
+
   static std::shared_ptr<rocksdb::Env> env_guard;
   static std::shared_ptr<rocksdb::Cache> block_cache;
 } // anonymous
@@ -90,6 +94,7 @@ namespace {
 namespace ycsbc {
 
 rocksdb::DB *RocksdbDB::db_ = nullptr;
+std::shared_ptr<rocksdb::Statistics> RocksdbDB::dbstats_ = nullptr;
 int RocksdbDB::ref_cnt_ = 0;
 std::mutex RocksdbDB::mu_;
 //BlueFS *RocksdbDB::bluefs = nullptr;
@@ -196,6 +201,7 @@ void RocksdbDB::Init() {
 }
 
 void RocksdbDB::Cleanup() {
+  fprintf(stdout, "STATISTICS:\n%s\n", dbstats_->ToString().c_str());
   const std::lock_guard<std::mutex> lock(mu_);
   if (--ref_cnt_) {
     return;
@@ -207,8 +213,16 @@ void RocksdbDB::GetOptions(const utils::Properties &props, rocksdb::Options *opt
                            std::vector<rocksdb::ColumnFamilyDescriptor> *cf_descs) {
   std::string env_uri = props.GetProperty(PROP_ENV_URI, PROP_ENV_URI_DEFAULT);
   std::string fs_uri = props.GetProperty(PROP_FS_URI, PROP_FS_URI_DEFAULT);
+  std::string statistics = props.GetProperty(PROP_STATISTICS, PROP_STATISTICS_DEFAULT);
   rocksdb::Env* env;
   env =  rocksdb::Env::Default();
+
+  if (statistics != "") {
+    dbstats_ = rocksdb::CreateDBStatistics();
+    dbstats_->set_stats_level(static_cast<rocksdb::StatsLevel>
+                             (rocksdb::StatsLevel::kExceptDetailedTimers));
+  }
+  opt->statistics = dbstats_;
 
   const std::string options_file = props.GetProperty(PROP_OPTIONS_FILE, PROP_OPTIONS_FILE_DEFAULT);
 

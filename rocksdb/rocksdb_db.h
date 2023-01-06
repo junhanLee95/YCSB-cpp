@@ -17,6 +17,7 @@
 #include <rocksdb/db.h>
 #include <rocksdb/table.h>
 #include <rocksdb/options.h>
+#include <rocksdb/statistics.h>
 /*
 #include "global/global_init.h"
 #include "os/bluestore/BlueFS.h"
@@ -100,6 +101,7 @@ class RocksdbDB : public DB {
   int fieldcount_;
 
   static rocksdb::DB *db_;
+  static std::shared_ptr<rocksdb::Statistics> dbstats_;
   static int ref_cnt_;
   static std::mutex mu_;
   //static BlueFS* bluefs;
