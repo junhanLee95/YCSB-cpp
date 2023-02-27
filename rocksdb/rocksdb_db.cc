@@ -33,6 +33,16 @@ namespace {
   const std::string PROP_BLUEFS_ENABLED = "bluefs.enabled";
   const std::string PROP_BLUEFS_ENABLED_DEFAULT = "false";
 
+  const std::string PROP_PIN_L0 = "rocksdb.pin_l0_filter_and_index_blocks_in_cache";
+  const std::string PROP_PIN_L0_DEFAULT = "false";
+
+  const std::string PROP_CACHE_INDEX_AND_FILTER = "rocksdb.cache_index_and_filter_blocks";
+  const std::string PROP_CACHE_INDEX_AND_FILTER_DEFAULT = "false";
+
+  const std::string PROP_ROW_CACHE_SIZE = "rocksdb.row_cache_size";
+  const std::string PROP_ROW_CACHE_SIZE_DEFAULT = "0";
+
+
   const std::string PROP_FORMAT = "rocksdb.format";
   const std::string PROP_FORMAT_DEFAULT = "single";
 
@@ -288,7 +298,21 @@ void RocksdbDB::GetOptions(const utils::Properties &props, rocksdb::Options *opt
       block_cache = rocksdb::NewLRUCache(cache_size);
       rocksdb::BlockBasedTableOptions table_options;
       table_options.block_cache = block_cache;
+
+      fprintf(stdout, "pin:\n%s\n", props.GetProperty(PROP_PIN_L0, PROP_PIN_L0_DEFAULT).c_str());
+      fprintf(stdout, "cache:\n%s\n", props.GetProperty(PROP_CACHE_INDEX_AND_FILTER, PROP_CACHE_INDEX_AND_FILTER_DEFAULT).c_str());
+      if (props.GetProperty(PROP_PIN_L0, PROP_PIN_L0_DEFAULT) == "true") {
+        table_options.pin_l0_filter_and_index_blocks_in_cache = true;
+      }
+      if (props.GetProperty(PROP_CACHE_INDEX_AND_FILTER, PROP_CACHE_INDEX_AND_FILTER_DEFAULT) == "true") {
+        table_options.cache_index_and_filter_blocks = true;
+      }
       opt->table_factory.reset(rocksdb::NewBlockBasedTableFactory(table_options));
+    }
+
+    size_t row_cache_size = std::stoi(props.GetProperty(PROP_ROW_CACHE_SIZE, PROP_ROW_CACHE_SIZE_DEFAULT));
+    if (row_cache_size != 0) {
+      opt->row_cache = rocksdb::NewLRUCache(row_cache_size);
     }
 
     if (props.GetProperty(PROP_INCREASE_PARALLELISM, PROP_INCREASE_PARALLELISM_DEFAULT) == "true") {
@@ -382,7 +406,9 @@ DB::Status RocksdbDB::ReadSingle(const std::string &table, const std::string &ke
 DB::Status RocksdbDB::ScanSingle(const std::string &table, const std::string &key, int len,
                                  const std::vector<std::string> *fields,
                                  std::vector<std::vector<Field>> &result) {
-  rocksdb::Iterator *db_iter = db_->NewIterator(rocksdb::ReadOptions());
+
+  rocksdb::ReadOptions ro;
+  rocksdb::Iterator *db_iter = db_->NewIterator(ro);
   db_iter->Seek(key);
   for (int i = 0; db_iter->Valid() && i < len; i++) {
     std::string data = db_iter->value().ToString();

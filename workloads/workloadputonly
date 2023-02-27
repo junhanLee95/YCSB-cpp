@@ -6,24 +6,25 @@
 #   Default data size: 1 KB records (10 fields, 100 bytes each, plus key)
 #   Request distribution: zipfian
 
-recordcount=1000
-operationcount=100000000
-keyrangecount=8
+recordcount=1000000
+operationcount=5000000
+keyrangecount=16
 workload=com.yahoo.ycsb.workloads.CoreWorkload
 
 readallfields=true
 
 readproportion=0
-updateproportion=1
+updateproportion=0
 scanproportion=0
-insertproportion=0
+insertproportion=1
+insertorder=seq
 
 zeropadding=20 # key is composed of 1<<64 and its len is 20. 20 + 12 = 32 which is the key size
 
 fieldcount=1
 fieldlength=978 # 978 + 14 = 992 byte and it makes item size 1KB
 
-printkeystat=true
+printkeystat=false
 
 requestdistribution=zipfiancomp
 
