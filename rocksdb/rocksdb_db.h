@@ -18,6 +18,8 @@
 #include <rocksdb/table.h>
 #include <rocksdb/options.h>
 #include <rocksdb/statistics.h>
+#include "db/column_family.h"
+#include "db/db_impl.h"
 /*
 #include "global/global_init.h"
 #include "os/bluestore/BlueFS.h"
@@ -32,6 +34,7 @@ class RocksdbDB : public DB {
   RocksdbDB() {}
   ~RocksdbDB() {}
 
+  void PrepareColumnFamily(rocksdb::DBImpl* db_impl, rocksdb::ColumnFamilyData* cfd, int unit_bit , int i);
   void Init();
 
   void Cleanup();

@@ -12,7 +12,7 @@
 BASEDIR = /home/ceph/junhan/code/rocksdb
 
 DEBUG_BUILD ?= 1
-EXTRA_CXXFLAGS ?= -I/home/ceph/junhan/code/rocksdb/include 
+EXTRA_CXXFLAGS ?= -I/home/ceph/junhan/code/rocksdb/include -I/home/ceph/junhan/code/rocksdb
 #EXTRA_CXXFLAGS ?= -I/home/ceph/rocksdb/include -I/home/ceph/bluefs_bench/ceph/src/ -I/home/ceph/bluefs_bench/ceph/build/include -I/home/ceph/bluefs_bench/ceph/build/boost/include
 #EXTRA_CXXFLAGS ?= -I/home/ceph/remixdb/include
 #EXTRA_CXXFLAGS ?= -I/home/ceph/pebblesdb/src/pebblesdb/include

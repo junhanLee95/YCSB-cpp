@@ -19,6 +19,8 @@
 #include <rocksdb/utilities/options_util.h>
 #include <rocksdb/write_batch.h>
 #include <rocksdb/statistics.h>
+#include <db/column_family.h>
+#include <db/db_impl.h>
 #include <iostream>
 /*
 #include "global/global_init.h"
@@ -57,6 +59,32 @@ namespace {
 
   const std::string PROP_MAX_BG_JOBS = "rocksdb.max_background_jobs";
   const std::string PROP_MAX_BG_JOBS_DEFAULT = "0";
+
+  const std::string PROP_LEVEL0_FILE_NUM_COMPACTION_TRIGGER = "rocksdb.level0_file_num_compaction_trigger";
+  const std::string PROP_LEVEL0_FILE_NUM_COMPACTION_TRIGGER_DEFAULT = "0";
+
+  const std::string PROP_LEVEL0_SLOWDOWN_WRITES_TRIGGER = "rocksdb.level0_slowdown_writes_trigger";
+  const std::string PROP_LEVEL0_SLOWDOWN_WRITES_TRIGGER_DEFAULT = "0";
+
+  const std::string PROP_LEVEL0_STOP_WRITES_TRIGGER = "rocksdb.level0_stop_writes_trigger";
+  const std::string PROP_LEVEL0_STOP_WRITES_TRIGGER_DEFAULT = "0";
+
+  const std::string PROP_ALLOW_CF_SPLIT = "rocksdb.allow_column_family_split";
+  const std::string PROP_ALLOW_CF_SPLIT_DEFAULT = "false";
+
+  const std::string PROP_STATIC_LCF = "rocksdb.static_lcf";
+  const std::string PROP_STATIC_LCF_DEFAULT = "false";
+
+  const std::string PROP_STATIC_LCF_NUM = "rocksdb.static_lcf_num_bit";
+  const std::string PROP_STATIC_LCF_NUM_DEFAULT = "0";
+
+
+
+  const std::string PROP_NUM_LEVELS = "rocksdb.num_levels";
+  const std::string PROP_NUM_LEVELS_DEFAULT = "7";
+
+  const std::string PROP_MAX_SUBCOMP = "rocksdb.max_subcompactions";
+  const std::string PROP_MAX_SUBCOMP_DEFAULT = "1";
 
   const std::string PROP_TARGET_FILE_SIZE_BASE = "rocksdb.target_file_size_base";
   const std::string PROP_TARGET_FILE_SIZE_BASE_DEFAULT = "0";
@@ -109,6 +137,41 @@ int RocksdbDB::ref_cnt_ = 0;
 std::mutex RocksdbDB::mu_;
 //BlueFS *RocksdbDB::bluefs = nullptr;
 
+void RocksdbDB::PrepareColumnFamily(rocksdb::DBImpl* db_impl, rocksdb::ColumnFamilyData* cfd, int unit_bit, int i) {
+	using namespace rocksdb;
+	std::vector<SplitFileInfo> infos;
+	FileMetaData* f1 = new FileMetaData;
+
+	int zero_padding = 20; // fixed for temporal use
+	uint64_t unit = (uint64_t)(std::pow(2, unit_bit));
+	std::cout << "unit : " <<unit << std::endl;
+	uint64_t unit_m = unit-1;
+	uint64_t start_num = i * unit;
+	uint64_t end_num = i * unit + unit_m;
+	std::cout << "start : " <<start_num << std::endl;
+	std::cout << "end : " <<end_num << std::endl;
+	int fill;
+
+	std::string start = std::to_string(start_num);
+	fill = std::max(0, zero_padding - static_cast<int>(start.size()));
+	std::string s1 = "user";
+	s1.append(fill, '0').append(start);
+	std::string end = std::to_string(end_num);
+	fill = std::max(0, zero_padding - static_cast<int>(end.size()));
+  std::string l1 = "user";
+	l1.append(fill, '0').append(end);
+
+	std::cout << "[START] Prepare " << i << "-th cf [ " << s1 << ", " << l1 << "]\n";
+	f1->smallest = InternalKey(Slice(s1), 0, kTypeValue);
+	f1->largest = InternalKey(Slice(l1), 0, kTypeValue);
+
+	infos.push_back(SplitFileInfo(f1, cfd));
+
+	db_impl->SplitColumnFamilyFromSstFiles(infos);
+
+	delete f1;
+	infos.clear();
+}
 void RocksdbDB::Init() {
 // merge operator disabled by default due to link error
 #ifdef USE_MERGEUPDATE
@@ -205,10 +268,31 @@ void RocksdbDB::Init() {
   } else {
     s = rocksdb::DB::Open(opt, db_path, cf_descs, &cf_handles, &db_);
   }
+
+	// JH: static_lcf option print
+	bool static_lcf = props.GetProperty(PROP_STATIC_LCF, PROP_STATIC_LCF_DEFAULT) == "true";
+  int static_lcf_num_bit = std::stoi(props.GetProperty(PROP_STATIC_LCF_NUM,
+				                                           PROP_STATIC_LCF_NUM_DEFAULT));
+	int static_lcf_num = (int)(std::pow(2, static_lcf_num_bit));
+  std::cout << "lcf_num : " << static_lcf_num << std::endl;
+  if (opt.allow_column_family_split && static_lcf) {
+		rocksdb::DBImpl* db_impl = reinterpret_cast<rocksdb::DBImpl*>(db_);
+		rocksdb::ColumnFamilyHandle* cfh = db_impl->DefaultColumnFamily();
+		rocksdb::ColumnFamilyData* cfd = static_cast<rocksdb::ColumnFamilyHandleImpl*>(cfh)->cfd();
+		int unit_bit = 64 - static_lcf_num_bit;
+	  for (int i=0; i<static_lcf_num; i++) {
+			// split column family
+		  PrepareColumnFamily(db_impl, cfd, unit_bit, i);
+		}
+	}
+
+
   if (!s.ok()) {
     throw utils::Exception(std::string("RocksDB Open: ") + s.ToString());
   }
 }
+
+
 
 void RocksdbDB::Cleanup() {
   fprintf(stdout, "STATISTICS:\n%s\n", dbstats_->ToString().c_str());
@@ -268,6 +352,33 @@ void RocksdbDB::GetOptions(const utils::Properties &props, rocksdb::Options *opt
     if (val != 0) {
       opt->max_background_jobs = val;
     }
+    val = std::stoi(props.GetProperty(PROP_LEVEL0_FILE_NUM_COMPACTION_TRIGGER, PROP_LEVEL0_FILE_NUM_COMPACTION_TRIGGER_DEFAULT));
+    if (val != 0) {
+      opt->level0_file_num_compaction_trigger = val;
+    }
+    val = std::stoi(props.GetProperty(PROP_LEVEL0_SLOWDOWN_WRITES_TRIGGER, PROP_LEVEL0_SLOWDOWN_WRITES_TRIGGER_DEFAULT));
+    if (val != 0) {
+      opt->level0_slowdown_writes_trigger = val;
+    }
+    val = std::stoi(props.GetProperty(PROP_LEVEL0_STOP_WRITES_TRIGGER, PROP_LEVEL0_STOP_WRITES_TRIGGER_DEFAULT));
+    if (val != 0) {
+      opt->level0_stop_writes_trigger = val;
+    }
+
+
+    if (props.GetProperty(PROP_ALLOW_CF_SPLIT, PROP_ALLOW_CF_SPLIT_DEFAULT) == "true") {
+      opt->allow_column_family_split = true;
+    }
+    val = std::stoi(props.GetProperty(PROP_NUM_LEVELS, PROP_NUM_LEVELS_DEFAULT));
+    if (val != 0) {
+      opt->num_levels = val;
+    }
+
+    val = std::stoi(props.GetProperty(PROP_MAX_SUBCOMP, PROP_MAX_SUBCOMP_DEFAULT));
+    if (val != 0) {
+      opt->max_subcompactions = val;
+    }
+
     val = std::stoi(props.GetProperty(PROP_TARGET_FILE_SIZE_BASE, PROP_TARGET_FILE_SIZE_BASE_DEFAULT));
     if (val != 0) {
       opt->target_file_size_base = val;

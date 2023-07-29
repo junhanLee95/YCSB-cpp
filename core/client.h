@@ -38,7 +38,7 @@ inline int ClientThread(ycsbc::DB *db, ycsbc::CoreWorkload *wl, const int num_op
   if(print_key_stat) {
      // open file
      std::ofstream ofile;
-     ofile.open("/home/junhan/YCSB-cpp/print_key_stats.txt");
+     ofile.open("/home/ceph/junhan/code/YCSB-cpp/print_key_stats.txt");
      for(auto k: key_stats) {
        ofile << k.first << "\t" << k.second << "\n";
      }
